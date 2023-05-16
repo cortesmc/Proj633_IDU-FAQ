@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 class User {
+    // Classe qui représente un utilisateur
     private string $nom;
     private string $prenom;
     private string $email;
@@ -26,7 +27,7 @@ class User {
 
     // Assurez-vous de hacher le mot de passe avant de l'attribuer
     public function setPassword(string $password): void {
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->password = $password;
     }
 
     public function getNom(): string {
@@ -39,11 +40,5 @@ class User {
 
     public function getEmail(): string {
         return $this->email;
-    }
-
-    // Ne retournez jamais un mot de passe haché
-    // Créez une méthode pour vérifier le mot de passe à la place
-    public function verifyPassword(string $password): bool {
-        return password_verify($password, $this->password);
     }
 }
