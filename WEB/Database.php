@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 const DB_HOST = 'https://tp-epua.univ-savoie.fr/phpMyAdmin/index.php';
-const DB_USER_NAME = 'root';
-const DB_PASSWORD  = '';
+const DB_USER_NAME = 'lebonmat';
+const DB_PASSWORD  = 'yxr5ryhf';
 const DB_NAME = 'Proj631';
 
 final class Database {
