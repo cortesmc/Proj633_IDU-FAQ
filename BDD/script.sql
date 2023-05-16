@@ -1,21 +1,21 @@
 /*----DROP TABLE----*/
 
-DROP TABLE IF EXISTS Utilisator;
+DROP TABLE IF EXISTS utilisator;
 
-DROP TABLE IF EXISTS Question;
+DROP TABLE IF EXISTS question;
 
-DROP TABLE IF EXISTS IsLiked;
+DROP TABLE IF EXISTS isLiked;
 
-DROP TABLE IF EXISTS Answer;
+DROP TABLE IF EXISTS answer;
 
-DROP TABLE IF EXISTS Category;
+DROP TABLE IF EXISTS category;
 
-DROP TABLE IF EXISTS Teacher;
+DROP TABLE IF EXISTS teacher;
 
 /*----CREATE TABLE----*/
 
 
-CREATE TABLE Utilisator (
+CREATE TABLE utilisator (
     idUser      integer auto_increment,
     lastname    varchar(50),
     firstname   varchar(50),
@@ -24,7 +24,7 @@ CREATE TABLE Utilisator (
     CONSTRAINT PK_USER PRIMARY KEY  (idUser)
 ) ;
 
-CREATE TABLE Question(
+CREATE TABLE question(
     idQuestion integer auto_increment,
     title       varchar(100),
     descr       varchar(10000),
@@ -35,13 +35,13 @@ CREATE TABLE Question(
     CONSTRAINT PK_QUESTION PRIMARY KEY (idQuestion)
 );
 
-CREATE TABLE IsLiked(
+CREATE TABLE isLiked(
     idUser      integer,
     idQuestion  integer,
     CONSTRAINT PK_ISLIKED PRIMARY KEY (idUser,idQuestion)
 );
 
-CREATE TABLE Answer(
+CREATE TABLE answer(
     idAnswer    integer auto_increment,
     shortText   varchar(400),
     nameFile    varchar(100),
@@ -49,13 +49,13 @@ CREATE TABLE Answer(
     CONSTRAINT PK_ANSWER PRIMARY KEY (idAnswer)
 );
 
-CREATE TABLE Category(
+CREATE TABLE category(
     idCategory  integer auto_increment,
     libele      varchar(200),
     CONSTRAINT PK_CATEGORY PRIMARY KEY (idCategory)
 );
 
-CREATE TABLE Teacher(
+CREATE TABLE teacher(
     idTeacher   integer auto_increment,
     firstname   varchar(50),
     lastname    varchar(50),
@@ -68,18 +68,19 @@ CREATE TABLE Teacher(
 
 /*----FOREIGN KEY----*/
 
-ALTER TABLE Question ADD FOREIGN KEY (idCategory) REFERENCES Category(idCategory);
+ALTER TABLE question ADD FOREIGN KEY (idCategory) REFERENCES category(idCategory);
 
-ALTER TABLE Question ADD FOREIGN KEY (idUser) REFERENCES Utilisator(idUser);
+ALTER TABLE question ADD FOREIGN KEY (idUser) REFERENCES utilisator(idUser);
 
-ALTER TABLE Question ADD FOREIGN KEY (idTeacher) REFERENCES Teacher(idTeacher);
+ALTER TABLE question ADD FOREIGN KEY (idTeacher) REFERENCES teacher(idTeacher);
 
-ALTER TABLE IsLiked ADD FOREIGN KEY (idUser) REFERENCES Utilisator(idUser);
+ALTER TABLE isLiked ADD FOREIGN KEY (idUser) REFERENCES utilisator(idUser);
 
-ALTER TABLE IsLiked ADD FOREIGN KEY (idQuestion) REFERENCES Question(idQuestion);
+ALTER TABLE isLiked ADD FOREIGN KEY (idQuestion) REFERENCES question(idQuestion);
 
-ALTER TABLE Answer ADD FOREIGN KEY (idTeacher) REFERENCES Teacher(idTeacher);
+ALTER TABLE answer ADD FOREIGN KEY (idTeacher) REFERENCES teacher(idTeacher);
 
+ALTER TABLE teacher ADD FOREIGN KEY (idUser) REFERENCES utilisator(idUser);
 
 
 
