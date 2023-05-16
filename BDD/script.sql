@@ -80,6 +80,7 @@ ALTER TABLE isLiked ADD FOREIGN KEY (idQuestion) REFERENCES question(idQuestion)
 
 ALTER TABLE answer ADD FOREIGN KEY (idTeacher) REFERENCES teacher(idTeacher);
 
+ALTER TABLE teacher ADD FOREIGN KEY (idUser) REFERENCES utilisator(idUser);
 
 
 
