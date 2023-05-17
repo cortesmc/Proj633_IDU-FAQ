@@ -92,6 +92,15 @@ p {
     /* box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */
 }
 
+.question:hover, .response:hover{
+    transform: translateX(-20px) translateY(-20px);
+}
+
+.background{
+    background-color: #59b9ea;
+    border-radius: 20px;
+}
+
 .question{
     margin-top: 0em;
 }
