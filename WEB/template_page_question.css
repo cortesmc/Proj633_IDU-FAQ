@@ -36,10 +36,10 @@ header{
 
 .principal {
     position: relative;
-    min-width: 32rem;
+    /* min-width: 32rem; */
     margin: 0 auto;
     width: 90%;
-    max-width: 126rem;
+    /* max-width: 126rem; */
     padding-top: 50px;
     display: flex;
 }
@@ -67,6 +67,12 @@ p {
     align-items: center;
 }
 
+.haut_qst_modif .titre_sujet{
+    justify-content: initial;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+}
+
 .haut_qst{
     border-bottom: 1px solid #59b9ea;
     padding-bottom: 0.4em;
@@ -82,7 +88,13 @@ p {
     padding-left: 0.3em;
 }
 
-.question, .response{
+.label_answer h4{
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    font-size: 1.3em;
+}
+
+.question, .response, .question_modif, .response_write{
     padding: 0.5em;
     padding-top: 0;
     border: 2px solid #59b9ea;
@@ -92,8 +104,31 @@ p {
     /* box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */
 }
 
+.response_write{
+    margin-top: 0;
+}
+
+.corps, .shorttext {
+    width: 100%; /* La textarea occupe toute la largeur de son conteneur */
+    height: 20em; /* La textarea occupe toute la hauteur de son conteneur */
+    resize: none; /* Empêche le redimensionnement de la textarea par l'utilisateur */
+    padding: 0.3em !important;
+    border-radius: 10px;
+}
+
+.titre_modif {
+    width: 20em;
+    margin-top: 0.5em !important;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding: 0.2em;
+    border-radius: 10px;
+    border: 1px solid;
+}
+
 .question:hover, .response:hover{
     transform: translateX(-20px) translateY(-20px);
+    transition: ease 0.1s;
 }
 
 .background{
@@ -103,6 +138,11 @@ p {
 
 .question{
     margin-top: 0em;
+    transition: ease 0.1s;
+}
+
+.response{
+    transition: ease 0.1s;
 }
 
 .texte_qst{
@@ -116,7 +156,7 @@ p {
     padding: 0.2em;
 }
 
-.qst_button{
+.qst_button, .btn_for_answer{
     display: flex;
 }
 
@@ -136,7 +176,7 @@ p {
   
 
          
-.btn_write input,  .qst_button input, .haut_qst input{
+.btn_write input,  .qst_button input, .haut_qst input, .form_write_answer input:not(.longtext){
     background-image: linear-gradient(to right, #84ceeb 0%, #59b9ea  51%, #84ceeb  100%);
     margin: 10px;
     padding: 15px 45px;
@@ -153,12 +193,16 @@ p {
     /* box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */
 }
 
-.btn_write input:hover,  .qst_button input:hover, .haut_qst input:hover {
+.btn_write input:hover,  .qst_button input:hover, .haut_qst input:hover{
     background-position: right center; /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
 
+.longtext{
+    padding : 0.5em;
+    font-size: 1.1em;
+}
 
 
 .btn_like input {
@@ -181,6 +225,55 @@ p {
 }
 
   
+
+@media (min-width: 950px) and (max-width: 1200px){
+    .qst_button, .titre_sujet{
+        display: inline-block;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 950px) {
+    .principal{
+        display: inline-block;
+        width: 100%;
+    }
+
+
+    .container_question, .container_response{
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 5em;
+    }
+}
+
+@media (max-width: 600px) {
+    .principal{
+        display: inline-block;
+        width: 100%;
+    }
+
+
+    .container_question, .container_response{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 5em;
+    }
+
+    .qst_button, .titre_sujet{
+        display: inline-block;
+    }
+
+    .qst_button, .btn_for_answer {
+        display: inline-block;
+    }
+
+    .longtext{
+        width: 100%;
+    }
+}
+
 
 .testcolor{
     color: #5680e9;
