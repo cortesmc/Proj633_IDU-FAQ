@@ -47,12 +47,13 @@ class Model {
 
 		} else {
 			// READ = SELECT
+			$o = new $class();
 			$stm = $db->prepare("select * from $table where id$table=:id");
 			$stm->bindValue(":id", $id);
 			$stm->execute();
 			$row = $stm->fetch(PDO::FETCH_ASSOC);
 			foreach($row as $key=>$value) 
-				$this->$key = $value;
+				$o->$key = $value;
 		}
 	}
 
@@ -91,6 +92,26 @@ class Model {
 	}
 
 
+
+	public static function allWithTwoParam( $nameParam1, $value1,$nameParam2,$value2 ) {
+		$class = get_called_class();
+		$table =  strtolower($class);
+		$st = db()->prepare("select * 
+			from $table 
+			where $nameParam1 = :value1
+			and $nameParam2 = :value2");
+		$st->bindValue(':value1', $value1);
+		$st->bindValue(':value2',$value2);
+		$st->execute();
+		$list = array();
+		while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+			$h = new $class();
+			foreach($row as $field=>$value)
+				$h->$field = $value;
+			$list[] = $h;
+		}
+		return $list;
+	}
 	public static function getByID($id) {
 		$class = get_called_class();
 		$table =  strtolower($class);
