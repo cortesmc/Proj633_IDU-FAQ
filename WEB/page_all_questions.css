@@ -24,17 +24,29 @@ h1{
     text-decoration: none;
 }
 
-#buttons{
+#content{
     display: flex;
-    justify-content: space-between;
-    margin: 30px;
+    padding-top: 50px;
+    width: 90%;
+    position: relative;
+    margin: auto;
+}
+
+#ask_container{
+    width: 35%;
+    margin-right: 4em;
+}
+
+#questions_container{
+    width: 60%;
 }
 
 #searchDiv{
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 .btn, #searchBarDiv{
-    margin: 10px;
     border-radius: 10px;
     padding: 15px 45px;
 
@@ -54,22 +66,14 @@ h1{
     cursor: pointer;
 }
 
-#allQuestions{
-    margin: 30px;
-    margin-left: 22em;
-}
 .question{
     display: flex;
     justify-content: space-between;
-    margin: 1em;
+    margin-bottom: 1em;
     padding: 1em;
     border: 2px solid #59b9ea;
     border-radius: 20px;
     background-color: #f0f5ff;
-}
-
-.question{
-    padding: 10px;
 }
 
 .questionTitle{
@@ -77,6 +81,7 @@ h1{
     color: #59b9ea;
     font-size: 1.4em;
     font-weight: bold;
+    align-items: center;
 }
 
 .questionTitle:hover{
