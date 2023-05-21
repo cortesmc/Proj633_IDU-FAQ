@@ -1,6 +1,6 @@
 <?php
 
-class Utilisator extends Model {
+class Teacher extends Model {
 
     public function save() {
 		// Données connues :
@@ -24,8 +24,7 @@ class Utilisator extends Model {
 		$stm->bindValue(":lastname", $this->lastname);
 		$stm->bindValue(":email", $this->email);
 		$stm->bindValue(":password", $this->password);
-
-		$stm->bindValue(":idutilisator", $this->idutilisator);
+		$stm->bindValue(":idteacher", $this->idteacher);
 		$stm->execute();
 
 	}

@@ -32,16 +32,23 @@
                 <H1 id="title">Creation de compte</H1><br>
                 <div id="container_info">
                     <div class="ligne">
-                        <H2 for="Prenom" class="form_el">Prenom</H2><br>
-                        <input type="text" id="Prenom" name="Prenom" class="textArea"><br>
+                        <H2 for="firstname" class="form_el">Prenom</H2><br>
+                        <input type="text" id="firstname" name="firstname" class="textArea"><br>
                     </div>
+
                     <div class="ligne">
-                        <H2 for="Nom" class="form_el">Nom:</H2><br>
-                        <input type="text" id="Nom" name="Nom" class="textArea"><br>
+                        <H2 for="lastname" class="form_el">Nom:</H2><br>
+                        <input type="text" id="lastname" name="lastname" class="textArea"><br>
                     </div>
+
                     <div class="ligne">
-                        <H2 for="Mdp" class="form_el">Mdp:</H2><br>
-                        <input type="password" id="Mdp" name="Mdp" class="textArea"><br>
+                        <H2 for="email" class="form_el">Email:</H2><br>
+                        <input type="text" id="email" name="email" class="textArea"><br>
+                    </div>
+
+                    <div class="ligne">
+                        <H2 for="password" class="form_el">Mdp:</H2><br>
+                        <input type="password" id="password" name="password" class="textArea"><br>
                     </div>
                 </div>
                 ';
