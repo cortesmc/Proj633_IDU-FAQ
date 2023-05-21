@@ -11,7 +11,7 @@
 		<ul>
 			<li><a href='?route=home'>Accueil</a></li>
 			<li><a href='?route=utilisators'>Liste de Utilisateurs</a></li>
-			<li><a href='?route=addUtilisator'>Ajouter un utilisateur</a></li>
+			<li><a href='?route=createAccount'>Ajouter un utilisateur</a></li>
 
 		</ul>
 	</nav>

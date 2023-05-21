@@ -7,7 +7,7 @@
 
 	<input  type='hidden'
 			name='route'
-			value='addUtilisator'/>
+			value='createAccount'/>
 
 	<h1 id="title">Creation de compte</h1> <br>
 
@@ -34,7 +34,7 @@
 
 
 		<input type="submit" value="Créer" class="button">
-		<a href="?route=connexionUtilisator" class="button">Se connecter</a>
+		<a href="?route=connexion" class="button">Se connecter</a>
 	</div>
 
 

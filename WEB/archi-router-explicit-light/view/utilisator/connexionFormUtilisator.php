@@ -25,7 +25,7 @@
 
 
 		<input type="submit" value="Ajouter" class="button">
-		<a href="?route=addUtilisator" class="button">Créer un compte</a>
+		<a href="?route=createAccount" class="button">Créer un compte</a>
 	</div>
 
 
