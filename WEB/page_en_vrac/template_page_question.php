@@ -9,7 +9,19 @@
 </head>
 <body>
     <header>
-        <H1>TITRE DU SITE</H1>
+        <div class='header_site'>
+            <div class='titre_site'>
+                <H1>TITRE DU SITE</H1>
+            </div>
+            <div class='compte'>
+                <form action="" method="post"><input type="submit" value="Se deconnecter 👤"></form>
+            </div>
+        </div>
+        <div class='header_back'>
+            <div class='back_btn'>
+                <form action="" method="post"><input type="submit" value="Back"></form>
+            </div>
+        </div>
     </header>
     <div class='principal'>
         <div class='container_question'>
@@ -220,8 +232,6 @@
                         </div>
                     </div>
                 </div>
-                
-
             </div>
         </div>
     </div>
