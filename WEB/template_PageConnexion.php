@@ -11,9 +11,14 @@
     <div class="container_connexion">
         <div>
             <?php
+
+
+            
+
             $showLoginForm = !isset($_POST['CreerCompte']);
 
             if ($showLoginForm) {
+
                 echo '
                 <H1 id="title">Connexion</H1><br>
                 <div id="container_info">

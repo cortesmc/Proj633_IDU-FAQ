@@ -57,7 +57,8 @@ class ConnexionController {
 			
 
 		} else {
-			// TO-DO ajouter message d'erreur sur la fenêtre quand le mail existe déjà lors de la création
+
+
 			include_once "view/utilisator/addFormUtilisator.php";
 		}
 	}
@@ -69,10 +70,10 @@ class ConnexionController {
 			$email = $_POST["email"];
 			$password = $_POST["password"];
 			$result= Utilisator::allWithParam("email",$email);
-			$connectedUser = $result[0];
 			
 
 			if(count($result)!=0){
+				$connectedUser = $result[0];
 
 				// l'email est présent dans la base de donnée
 				//Vérification si le mot de passe est bien le même
@@ -86,11 +87,11 @@ class ConnexionController {
 
 				}
 				else{
-					//TO DO afficher un message pour dire mauvais mot de passe
+					header("Location: ?route=connexion&mess=mdp");
 				}
 			}
 			else{
-				//TO DO afficher un message évocant le fait que l'email n'est pas renseigné
+				header("Location: ?route=connexion&mess=mail");
 			}
 		} else {
 			include_once "view/utilisator/connexionFormUtilisator.php";
