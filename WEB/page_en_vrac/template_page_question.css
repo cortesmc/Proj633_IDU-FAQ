@@ -10,11 +10,38 @@ body{
     background-color: #e9eeff;
 }
 
-header{
+.header_site{
     background-image: linear-gradient(to right, #84ceeb 0%, #59b9ea  51%, #84ceeb  100%);
     color: white;
     padding: 25px;
     box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.titre_site {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.7em;
+}
+  
+.compte {
+    margin-left: auto;
+}
+
+.compte input{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1.2em;
+}
+
+.back_btn input{
+    margin-top: 2em !important;
+    margin-left: 6em !important;
 }
 
 h1{
@@ -30,9 +57,7 @@ h2{
     padding-bottom: 0.4em;
 }
 
-header{
-    text-align: center;
-}
+
 
 .principal {
     position: relative;
@@ -40,13 +65,14 @@ header{
     margin: 0 auto;
     width: 90%;
     /* max-width: 126rem; */
-    padding-top: 50px;
+    /* padding-top: 50px; */
     display: flex;
 }
 
 .container_question {
     width: 35%;
     margin-right: 4em;
+    padding-top: 20px;
     /* position: fixed; */
 }
 
@@ -54,6 +80,7 @@ header{
 .container_response {
     width: 60%;
     /* margin-left: 45%; */
+    margin-top: -60px;
 }
 
 p {
@@ -176,7 +203,7 @@ p {
   
 
          
-.btn_write input,  .qst_button input, .haut_qst input, .form_write_answer input:not(.longtext){
+.btn_write input,  .qst_button input, .haut_qst input, .form_write_answer input:not(.longtext), .back_btn input{
     background-image: linear-gradient(to right, #84ceeb 0%, #59b9ea  51%, #84ceeb  100%);
     margin: 10px;
     padding: 15px 45px;
@@ -248,6 +275,7 @@ p {
 }
 
 @media (max-width: 600px) {
+
     .principal{
         display: inline-block;
         width: 100%;
