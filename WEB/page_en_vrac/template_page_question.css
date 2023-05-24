@@ -41,7 +41,7 @@ body{
 
 .back_btn input{
     margin-top: 2em !important;
-    margin-left: 6em !important;
+    margin-left: 5% !important;
 }
 
 h1{
@@ -271,6 +271,10 @@ p {
         margin-left: 15%;
         margin-right: 15%;
         margin-bottom: 5em;
+    }
+
+    .back_btn input{
+        margin-left: 15% !important;
     }
 }
 
