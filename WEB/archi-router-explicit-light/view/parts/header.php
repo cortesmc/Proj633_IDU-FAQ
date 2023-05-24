@@ -8,7 +8,7 @@
 <body>
 
 	<header>
-        <H1>TITRE DU SITE</H1>
+        <H1>FORUM INFO633</H1>
     </header>
 	
 	<nav>
