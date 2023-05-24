@@ -50,11 +50,11 @@ class ConnexionController {
 				header("Location: ?route=utilisators");	
 			}
 			else{
-				include_once "view/utilisator/addFormUtilisator.php";
+				//Si l'email existe déjà
+				// TO DO message de modifications
+				include_once "view/utilisator/addFormUtilisatorError.php";
 			}
 		} else {
-			//Si l'email existe déjà
-			// TO DO message de modifications
 			include_once "view/utilisator/addFormUtilisator.php";
 		}
 	}
