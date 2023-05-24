@@ -10,9 +10,8 @@ class ConnexionController {
 			isset($_POST["lastname"])  &&
 			isset($_POST["email"])	   &&
 			isset($_POST["password"]))  {
-
 			// -- Si l'adresse n'existe pas 
-			if ( !Utilisator::checkIfEmailExist( $_POST["email"] )  || !Teacher::checkIfEmailExist( $_POST["email"] ) ) {
+			if ( !Utilisator::checkIfEmailExist( $_POST["email"] )  || !Teacher::checkIfEmailExist( $_POST["email"]) ) {
 
 				$email = $_POST["email"];
 				$etu = substr($email,strpos($email,"@"),4);
@@ -48,16 +47,14 @@ class ConnexionController {
 
 				}
 
-
-
-				
-
 				header("Location: ?route=utilisators");	
 			}
-			
-
+			else{
+				include_once "view/utilisator/addFormUtilisator.php";
+			}
 		} else {
-			// TO-DO ajouter message d'erreur sur la fenêtre quand le mail existe déjà lors de la création
+			//Si l'email existe déjà
+			// TO DO message de modifications
 			include_once "view/utilisator/addFormUtilisator.php";
 		}
 	}
@@ -69,28 +66,34 @@ class ConnexionController {
 			$email = $_POST["email"];
 			$password = $_POST["password"];
 			$result= Utilisator::allWithParam("email",$email);
-			$connectedUser = $result[0];
 			
-
+			//Vérification si l'utilisateur qui se connecte est un teacher ou pas 
+			if(Teacher::checkIfEmailExist($email)){
+				$isTeacher = true;
+			}
+			else{
+				$isTeacher = false;
+			}
 			if(count($result)!=0){
+				$connectedUser = $result[0];
+				// var_dump($connectedUser);
 
 				// l'email est présent dans la base de donnée
 				//Vérification si le mot de passe est bien le même
 				$verPassword = password_verify($password,$connectedUser->password);
 				if($verPassword){
 					// -> Si oui envoyé à la route home
-					// -> variable de session avec utilisateur connected $_SESSION["utilisator_conn"] = Utilisator::getByConnexion($email, $pwd)
 					$_SESSION["utilisateur_conn"] =  $connectedUser;
+					$_SESSION["isTeacher"] = $isTeacher;
 					header("Location: ?route=home");			
-
 
 				}
 				else{
-					//TO DO afficher un message pour dire mauvais mot de passe
+					header("Location: ?route=connexion&mess=mdp");
 				}
 			}
 			else{
-				//TO DO afficher un message évocant le fait que l'email n'est pas renseigné
+				header("Location: ?route=connexion&mess=mail");
 			}
 		} else {
 			include_once "view/utilisator/connexionFormUtilisator.php";
