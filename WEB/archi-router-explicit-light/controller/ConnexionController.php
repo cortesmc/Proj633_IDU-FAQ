@@ -54,18 +54,6 @@ class ConnexionController {
 
 				header("Location: ?route=utilisators");	
 			}
-			//EN ATTENTE pour l'instant pas de message 
-			// else{
-			// 	//TO DO renvoyer a la page création avec message d'erreur car mail déjà utilisé
-			// 	//permet d'éviter que lorsque que l'on recharge la page ce post soit maintenu et donc de boucler (Pascal Pichon)
-
-			// 	echo($_POST["email"]);
-
-			// 	echo("toto");
-			// 	header("Location : ?route=createAccount&test=1");
-			// 	//header("Location: ?route=connexion&mess=mdp");
-			// }
-			
 		} else {
 			include_once "view/utilisator/addFormUtilisator.php";
 		}
@@ -95,7 +83,6 @@ class ConnexionController {
 				$verPassword = password_verify($password,$connectedUser->password);
 				if($verPassword){
 					// -> Si oui envoyé à la route home
-					// -> variable de session avec utilisateur connected $_SESSION["utilisator_conn"] = Utilisator::getByConnexion($email, $pwd)
 					$_SESSION["utilisateur_conn"] =  $connectedUser;
 					$_SESSION["isTeacher"] = $isTeacher;
 					header("Location: ?route=home");			
