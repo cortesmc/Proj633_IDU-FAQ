@@ -9,6 +9,11 @@ class QuestionController {
         global $data;
         $data = Question::all();
 
+        $questionsNotValidate = Question::getAllNotValidate();
+        $questionsValidate = Question::getAllValidate();
+
+        // var_dump($_SESSION);
+
         // -- VIEWS
         include_once "view/parts/header.php";
 		include_once "view/question/displayAllQuestion.php";

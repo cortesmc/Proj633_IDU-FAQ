@@ -1,229 +1,152 @@
 
 
 <style>
-	<?php include 'css/question/question.css'; ?>
+	<?php include 'css/question/allQuestion.css'; ?>
 </style>
 
 
-<div class='principal'>
-        <div class='container_question'>
+<div id='content'>
+        <!-- PHP : ask_container apparait uniquement si un etudiant est connecté -->
 
+        <?php
+        if (!$_SESSION['isTeacher']) {
+        ?>
+        <div id='ask_container' class='container leftContainer'>
             <?php
-            if (isset($_POST['edit_qst'])){
-                echo"
-                <form action='template_page_question.php' method='POST'>
-                    <div class='question_modif'>
-                        <div class='haut_qst_modif'>
-                            <div class='titre_sujet'>
-                                <h4>Sujet :</h4>
-                                <input type='text' name='titre' value='Ceci est un titre' class='titre_modif'></input>
-                            </div>
-                        </div>
-
-                        <div class='texte_qst'>
-                            <textarea name='corps' class='corps'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!
-                            </textarea>
-                        </div>
-                    </div>
-                </form>
-
-                
-                <div class='qst_button'>
-                
-                    <div class='btn_edit'>
-                        <form action='template_page_question.php' method='POST'><input type='submit' value='CANCEL' name='back_qst'></input></form>
-                    </div>
-
-                    <div class='btn_valider'>
-                        <input type='submit' value='VALIDER MODIFICATIONS'></input>
-                    </div>
+            if (isset($_POST["ask_question"])){
+            ?>
+            <form action='page_all_questions.php' method='post'>
+                <div id='QBtns'>
+                    <input type='submit' class='btn' id='backBtn' value='Annuler'>
+                    <input type='submit' class='btn' id='sendBtn' value='Envoyer'>
                 </div>
-                ";
+                <div id='questionEntry'>
+                    <div id='writeHeader'>
+                        <span id='subject'>Sujet : </span>
+                        <input type='text' id='subjectTA'>
+                    </div>
+                    <textarea name='questionTA' id='TextAreaQuestion' cols='30' rows='10'></textarea>
+                </div>
+            </form>
+            <?php
             }
             else{
-                echo"
-                <div class='background'>
-                    <div class='question'>
-
-                        <div class='haut_qst'>
-
-                            <div class='titre_sujet'>
-                                <h4>Sujet :</h4>
-                                <p>Ceci est un titre</p>
-                            </div>
-
-                            <div class='btn_like'>
-                                <input type='submit' value='❤'></input>
-                            </div>
-                        </div>
-
-                        <div class='texte_qst'>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class='qst_button'>
-
-                    <div class='btn_edit'>
-                        <form action='template_page_question.php' method='POST'><input type='submit' value='EDIT' name='edit_qst'></input></form>
-                    </div>
-
-                    <div class='btn_valider'>
-                        <input type='submit' value='VALIDER'></input>
-                    </div>
-                </div>
-                ";
+            ?>
+            <form action='page_all_questions.php' method='post'>
+                <input type='submit' class='btn' name='ask_question' id='writeBtn' value='Poser une question'>
+            </form>
+            <?php
             }
             ?>
+        </div>   
 
-        </div>
-        <div class ='container_response'>
-            <div class='response_title'>
-                <H2>Réponses : (nb_reponses)</H2>
+        <?php 
+        } 
+        ?>
+       
+        <!-- PHP : unvalidated_container apparait uniquement si un prof est connecté -->
+        <?php 
+        if ($_SESSION['isTeacher']) {
+        ?>
+            <div id='unvalidated_container' class='container leftContainer'>
+
+            <?php
+            if (count($questionsNotValidate) == 0) {
+            ?>
+                <h2>Aucune question n'est à valider pour le moment ...</h2>
+            <?php
+            }
+            else {
+            ?>
+                <h2 id='unvalidatedHeader'>Questions à valider</h2>
+                <div id='all_unvalidated'>
+                <!-- liste des questions pas encore validées -->
+
+                <?php
+                    foreach($questionsNotValidate as $questionNotValidate) {
+                ?>
+                    <div class='unvalidatedQ'>
+                        <a href='?route=question&idQuestion=<?php echo $questionNotValidate->idquestion ?>' class='unvalidatedTitle'> 
+                            <?php echo $questionNotValidate->title ?> 
+                        </a>
+                    </div>
+                <?php
+                    }
+                ?>
+
+                </div>
+
+        <?php
+            }
+        }
+        ?>
             </div>
 
-            <?php
-                if (isset($_POST["write_answer"])){
-                    echo"
-                    <form action='template_page_question.php' method='POST' class='form_write_answer'>
-                    <div class='btn_for_answer'>
-                        <div class='btn_annuler_answer'>
-                            <input type='submit' value='Annuler reponse' name='annuler_reponse'></input>
-                        </div>
-                        <div class='btn_valid_answer'>
-                            <input type='submit' value='Valider reponse' name='valider_reponse'></input>
-                        </div>
-                    </div>
-                    <div class='response_write'>
-                        <div class='haut_qst_reponse'>
-                            <div class='label_answer'>
-                                <h4>Ecrire la réponse ici</h4>
-                            </div>
-                        </div>
-                        <div class='texte_response'>
-                            <textarea name='shorttext' class='shorttext' placehorder='Ecrivez votre réponse ici'></textarea>
-                        </div>
-                        <div class='drop_response'>
-                            <input type='file' name='longtext' class='longtext' placehorder='Mettez fotre fichier ici'></input>
-                        </div>
-                    </div>
-                    </form>
-                    ";
-                }
-                else{
-                    echo"
-                    <div class='btn_write'>
-                        <form action='template_page_question.php' method='POST'><input type='submit' value='Write answer' name='write_answer'></input></form>
-                    </div>
-                    ";
-                }
-            ?>
 
-            <?php
-            echo"<div class='liste_response'>";
-                $counter = 0;
-                while ($counter < 5){
-                    
-                    if (isset($_POST["edit"])){
-                        echo"
-                        <form action='template_page_question.php' method='POST'>
-                            <div class='question_modif'>
-                                <div class='haut_qst_modif'>
-                                    <div class='titre_sujet'>
-                                        <h4>Sujet :</h4>
-                                        <input type='text' name='titre' value='Ceci est un titre' class='titre_modif'></input>
-                                    </div>
-                                </div>
         
-                                <div class='texte_qst'>
-                                    <textarea name='corps' class='corps'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!
-                                    </textarea>
+        <div id='questions_container' class='container'>
+            <div id=searchDiv>
+                <span>Recherche : </span>
+                <div id='searchBarDiv'>
+                    <form action='' method='post'>
+                        <input type='text' id='searchBar'>
+                    </form>
+                </div>
+                <div id='filter'>
+                    <form action='' method='post'>
+                        <input type='submit' class='btn' name='filterBtn' id='filterBtn' value='Filtres'>
+                    </form>
+                </div>
+            </div>
+            <?php
+                if(isset($_POST["filterBtn"])){
+            ?>
+                    <div id=filterDiv>
+                        <form action='' method='post'>
+                            <div id=allCategories>";
+                            <!-- // liste des categories sous forme de checkbox
+                            // remplacer categorie1,2,3 par le nom de la categorie 
+                            // attention bien le faire partout : id de la checkbox, for du label, texte du label -->
+                                <div class='checkboxdiv'>
+                                    <input type='checkbox' class='categorie_checkbox' id='categorie1'>
+                                    <label for='categorie1'>Categorie1</label>
                                 </div>
+                                <div class='checkboxdiv'>
+                                    <input type='checkbox' class='categorie_checkbox' id='categorie2'>
+                                    <label for='categorie2'>Categorie2</label>
+                                </div>
+                                <div class='checkboxdiv'>
+                                    <input type='checkbox' class='categorie_checkbox' id='categorie3'>
+                                    <label for='categorie3'>Categorie3</label>
+                                </div>
+                            </div>
+                            <div id='filter_buttons'>
+                                <input type='submit' class='btn' name='filterbackBtn' id='filterbackBtn' value='Annuler'>
+                                <input type='submit' class='btn' name='filtersendBtn' id='filtersendBtn' value='Valider'>
                             </div>
                         </form>
-        
-                        
-                        <div class='qst_button'>
-                            <div class='btn_edit'>
-                                <form action='template_page_question.php' method='POST'><input type='submit' value='CANCEL' name='back_qst'></input></form>
-                            </div>
-                            <div class='btn_valider'>
-                                <input type='submit' value='VALIDER MODIFICATIONS'></input>
-                            </div>
-                        </div>
-                        ";
-                    }
-                    else{
-                        echo"
-                        <div class='background'>
-                            <div class='response'>
-                                <div class='haut_qst'>
-                                    <div class='titre_sujet'>
-                                        <h4>Sujet :</h4>
-                                        <p>Ceci est un titre</p>
-                                    </div>
-                                    <div class='btn_etit_response'>
-                                        <form action='template_page_question.php' method='POST'><input type='submit' value='EDIT' name='edit'></input></form>
-                                    </div>
-                                </div>
-                                <div class='texte_qst'>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!</p>
-                                </div>
-                            </div>
-                        </div>
-                        ";
-                        }
-                    $counter++;
+                    </div>
+            <?php
                 }
+            ?>
 
-                    
+            <!-- div avec toutes les questions : modifier php -->
+            <div id='allQuestions'>
+
+            <?php
+            foreach($questionsValidate as $questionValidate) {
+            ?>
+                <div class=questionBG>
+                    <div class='question'>
+                        <a href='?route=question&idQuestion=<?php echo $questionValidate->idquestion ?>' class='questionTitle'><?php echo $questionValidate->title ?></a>
+                        <input type='submit' value='❤' class='like'></input>
+                    </div>
+                </div>
+
+            <?php
+            }
             ?>
                 
-
-
-
-
-
-                <div class='background'>
-                    <div class='response'>
-                        <div class='haut_qst'>
-                            <div class='titre_sujet'>
-                                <h4>Sujet :</h4>
-                                <p>Ceci est un titre</p>
-                            </div>
-                            <div class='btn_etit_response'>
-                                <form action='template_page_question.php' method='POST'></form><input type='submit' value='EDIT' name='edit'></input>
-                            </div>
-                        </div>
-                        <div class='texte_qst'>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='background'>
-                    <div class='response'>
-                        <div class='haut_qst'>
-                            <div class='titre_sujet'>
-                                <h4>Sujet :</h4>
-                                <p>Ceci est un titre</p>
-                            </div>
-                            <div class='btn_etit_response'>
-                                <input type='submit' value='EDIT'></input>
-                            </div>
-                        </div>
-                        <div class='texte_qst'>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!</p>
-                        </div>
-                    </div>
-                </div>
-                
-
             </div>
         </div>
     </div>
-

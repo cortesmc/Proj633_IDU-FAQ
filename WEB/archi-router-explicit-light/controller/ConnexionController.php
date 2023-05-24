@@ -47,7 +47,9 @@ class ConnexionController {
 
 				}
 
-				header("Location: ?route=utilisators");	
+				
+
+				header("Location: ?route=questions");	
 			}
 			else{
 				//Si l'email existe déjà
@@ -85,7 +87,7 @@ class ConnexionController {
 					// -> Si oui envoyé à la route home
 					$_SESSION["utilisateur_conn"] =  $connectedUser;
 					$_SESSION["isTeacher"] = $isTeacher;
-					header("Location: ?route=home");			
+					header("Location: ?route=questions");			
 
 				}
 				else{
