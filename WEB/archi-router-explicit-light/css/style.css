@@ -2,21 +2,21 @@
 	margin: 0px;
 	padding: 0px;
 }
-body  {
+body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 	font-family: sans-serif;
 }
-header  { 
-	flex: 0 0 100px;
-	line-height: 100px;
-	background-color: chocolate;
-	padding: 20px;
-	border-bottom: solid 10px black;
-	text-transform: uppercase;
-	font-size: 2em;
+
+header { 
+    background-image: linear-gradient(to right, #84ceeb 0%, #59b9ea  51%, #84ceeb  100%);
+    color: white;
+    padding: 25px;
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.15);
+    text-align: center;
 }
+
 nav {
 	flex: 0 0 60px;
 }
