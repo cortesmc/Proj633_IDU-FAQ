@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='template_page_question.css' />
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <H1>TITRE DU SITE</H1>
-    </header>
-    <div class='principal'>
+
+
+<style>
+	<?php include 'css/question/question.css'; ?>
+</style>
+
+
+<div class='principal'>
         <div class='container_question'>
 
             <?php
@@ -35,9 +29,11 @@
 
                 
                 <div class='qst_button'>
+                
                     <div class='btn_edit'>
                         <form action='template_page_question.php' method='POST'><input type='submit' value='CANCEL' name='back_qst'></input></form>
                     </div>
+
                     <div class='btn_valider'>
                         <input type='submit' value='VALIDER MODIFICATIONS'></input>
                     </div>
@@ -48,11 +44,14 @@
                 echo"
                 <div class='background'>
                     <div class='question'>
+
                         <div class='haut_qst'>
+
                             <div class='titre_sujet'>
                                 <h4>Sujet :</h4>
                                 <p>Ceci est un titre</p>
                             </div>
+
                             <div class='btn_like'>
                                 <input type='submit' value='❤'></input>
                             </div>
@@ -65,9 +64,11 @@
                 </div>
                 
                 <div class='qst_button'>
+
                     <div class='btn_edit'>
                         <form action='template_page_question.php' method='POST'><input type='submit' value='EDIT' name='edit_qst'></input></form>
                     </div>
+
                     <div class='btn_valider'>
                         <input type='submit' value='VALIDER'></input>
                     </div>
@@ -180,6 +181,11 @@
                     
             ?>
                 
+
+
+
+
+
                 <div class='background'>
                     <div class='response'>
                         <div class='haut_qst'>
@@ -220,5 +226,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+

@@ -48,10 +48,6 @@ class ConnexionController {
 
 				}
 
-
-
-				
-
 				header("Location: ?route=utilisators");	
 			}
 			
@@ -82,7 +78,6 @@ class ConnexionController {
 					// -> variable de session avec utilisateur connected $_SESSION["utilisator_conn"] = Utilisator::getByConnexion($email, $pwd)
 					$_SESSION["utilisateur_conn"] =  $connectedUser;
 					header("Location: ?route=home");			
-
 
 				}
 				else{
