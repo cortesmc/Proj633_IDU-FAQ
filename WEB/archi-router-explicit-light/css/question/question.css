@@ -1,22 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Brandon Text,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
-    
-}
-
-body{
-    background-color: #e9eeff;
-}
-
-.header_site{
-    background-image: linear-gradient(to right, #84ceeb 0%, #59b9ea  51%, #84ceeb  100%);
-    color: white;
-    padding: 25px;
-    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
 
 h1{
     font-size: 40px;
@@ -37,14 +18,13 @@ h2{
     margin: 0 auto;
     width: 90%;
     /* max-width: 126rem; */
-    /* padding-top: 50px; */
+    padding-top: 50px;
     display: flex;
 }
 
 .container_question {
     width: 35%;
     margin-right: 4em;
-    padding-top: 20px;
     /* position: fixed; */
 }
 
@@ -52,7 +32,6 @@ h2{
 .container_response {
     width: 60%;
     /* margin-left: 45%; */
-    margin-top: -60px;
 }
 
 p {
@@ -157,6 +136,7 @@ p {
 
 .qst_button, .btn_for_answer{
     display: flex;
+    align-items: center;
 }
 
 .qst_button input{
@@ -175,7 +155,7 @@ p {
   
 
          
-.btn_write input,  .qst_button input, .haut_qst input, .form_write_answer input:not(.longtext), .back_btn input{
+.btn_write input,  .qst_button input, .haut_qst input, .form_write_answer input:not(.longtext){
     background-image: linear-gradient(to right, #84ceeb 0%, #59b9ea  51%, #84ceeb  100%);
     margin: 10px;
     padding: 15px 45px;
@@ -244,14 +224,9 @@ p {
         margin-right: 15%;
         margin-bottom: 5em;
     }
-
-    .back_btn input{
-        margin-left: 15% !important;
-    }
 }
 
 @media (max-width: 600px) {
-
     .principal{
         display: inline-block;
         width: 100%;

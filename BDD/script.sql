@@ -46,6 +46,7 @@ CREATE TABLE answer(
     shortText   	varchar(400),
     nameFile    	varchar(100),
     idteacher   	integer NOT NULL,
+    idquestion      integer NOT NULL,
     CONSTRAINT PK_ANSWER PRIMARY KEY (idanswer)
 );
 
@@ -80,6 +81,8 @@ ALTER TABLE isLiked ADD FOREIGN KEY (idquestion) REFERENCES question(idquestion)
 
 ALTER TABLE answer ADD FOREIGN KEY (idteacher) REFERENCES teacher(idteacher);
 
+ALTER TABLE answer ADD FOREIGN KEY (idquestion) REFERENCES question(idquestion);
+
 /* ALTER TABLE teacher ADD FOREIGN KEY (idutilisator) REFERENCES utilisator(idutilisator); */
 
 
@@ -87,8 +90,10 @@ ALTER TABLE answer ADD FOREIGN KEY (idteacher) REFERENCES teacher(idteacher);
 
 
 /*---- INSERTION DE DONNÉE ----*/
+
+/*-- UTILISATOR --*/
 INSERT INTO utilisator (lastname, firstname, email, password)
-	VALUES ("DUPONT", "Henri", "henro@gmail.com", "henriPwd");
+	VALUES ("PLEBANI", "Theo", "pet@etu-univ-smb.fr", "prout");
 
 INSERT INTO utilisator (lastname, firstname, email, password)
 	VALUES ("DUPONT1", "Henri1", "henro1@gmail.com", "henri1Pwd");
@@ -106,14 +111,34 @@ INSERT INTO utilisator (lastname, firstname, email, password)
 	VALUES ("DUPONT5", "Henri5", "henro5@gmail.com", "henri5Pwd");
 
 
+/*-- CATEGORY --*/
+INSERT INTO category (libele)
+	VALUES ("PHP");
 
 
+/*-- TEACHER --*/
+INSERT INTO teacher (lastname, firstname, email, password)
+	VALUES ("Cortes", "Andres", "acortes@univ-smb.fr", "petitpoussin");
 
 
+/*-- QUESTION --*/
+-- INSERT INTO question (lastname, firstname, email, password)
+-- 	VALUES ("Le sujet de la question que je ne comprends pas !",
+--             "Vraiment un texte super long pour décrire la question, laaaaaaaaaaaaaa !", 
+--             'NULL', 
+--             '1', '1', '1');
 
 
+/*-- QUESTION --*/
+INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+	VALUES ("La reponse 1 a la question 1",
+            "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+            '1', '1');
 
-
+INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+	VALUES ("La reponse 2 a la question 1",
+            "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+            '1', '1');
 
 
 

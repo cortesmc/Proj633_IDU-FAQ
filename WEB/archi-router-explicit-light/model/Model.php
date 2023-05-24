@@ -57,7 +57,6 @@ class Model {
 		}
 	}
 
-
 	public static function all() {
 		$class = get_called_class();
 		$table =  strtolower($class);
@@ -91,9 +90,7 @@ class Model {
 		return $list;
 	}
 
-
-
-	public static function allWithTwoParam( $nameParam1, $value1,$nameParam2,$value2 ) {
+	public static function allWithTwoParam( $nameParam1, $value1, $nameParam2, $value2 ) {
 		$class = get_called_class();
 		$table =  strtolower($class);
 		$st = db()->prepare("select * 
@@ -112,6 +109,7 @@ class Model {
 		}
 		return $list;
 	}
+
 	public static function getByID($id) {
 		$class = get_called_class();
 		$table =  strtolower($class);
@@ -128,7 +126,6 @@ class Model {
 
 	}
 
-
 	public static function random() {
 		$class = get_called_class();
 		$table =  strtolower($class);
@@ -143,10 +140,5 @@ class Model {
 		return $o;
 
 	}
-
-
-
-
-
 
 }

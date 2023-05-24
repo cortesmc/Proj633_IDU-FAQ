@@ -48,10 +48,6 @@ class ConnexionController {
 
 				}
 
-
-
-				
-
 				header("Location: ?route=utilisators");	
 			}
 		} else {
@@ -86,7 +82,6 @@ class ConnexionController {
 					$_SESSION["utilisateur_conn"] =  $connectedUser;
 					$_SESSION["isTeacher"] = $isTeacher;
 					header("Location: ?route=home");			
-
 
 				}
 				else{

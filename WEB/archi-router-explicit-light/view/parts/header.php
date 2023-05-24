@@ -6,12 +6,18 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<header><h1>HEADER</h1></header>
+
+	<header>
+        <H1>TITRE DU SITE</H1>
+    </header>
+	
 	<nav>
 		<ul>
 			<li><a href='?route=home'>Accueil</a></li>
 			<li><a href='?route=utilisators'>Liste de Utilisateurs</a></li>
 			<li><a href='?route=createAccount'>Ajouter un utilisateur</a></li>
+			<li><a href='?route=questions'>Liste des Questions</a></li>
+			<li><a href='?route=question&idQuestion=1'>Une Question</a></li>
 
 		</ul>
 	</nav>
