@@ -53,6 +53,9 @@ class Utilisator extends Model {
 	}
 
 	public static function checkIfEmailExist($email) {
+		/*
+		Si l'email est présent dans la table Utilisator -> return true : else -> return false
+		*/ 
 		return (Utilisator::getByEmail($email) != false) ? true : false;
 	}
 	

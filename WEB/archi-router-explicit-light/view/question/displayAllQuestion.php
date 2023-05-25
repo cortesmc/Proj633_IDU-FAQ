@@ -32,7 +32,7 @@
             }
             else{
             ?>
-            <form action='page_all_questions.php' method='post'>
+            <form action='' method='post'>
                 <input type='submit' class='btn' name='ask_question' id='writeBtn' value='Poser une question'>
             </form>
             <?php
@@ -78,12 +78,12 @@
 
         <?php
             }
-        }
         ?>
             </div>
+        <?php 
+        }
+        ?>
 
-
-        
         <div id='questions_container' class='container'>
             <div id=searchDiv>
                 <span>Recherche : </span>
@@ -93,60 +93,76 @@
                     </form>
                 </div>
                 <div id='filter'>
-                    <form action='' method='post'>
+                    <!-- <form action='' method='post'>
                         <input type='submit' class='btn' name='filterBtn' id='filterBtn' value='Filtres'>
-                    </form>
+                    </form> -->
+                    <p class="btn" id='filterBtn'>Filtres</p>
                 </div>
             </div>
-            <?php
-                if(isset($_POST["filterBtn"])){
-            ?>
+            
                     <div id=filterDiv>
                         <form action='' method='post'>
-                            <div id=allCategories>";
+                            <div id='allCategories' class='display_none'>
                             <!-- // liste des categories sous forme de checkbox
                             // remplacer categorie1,2,3 par le nom de la categorie 
                             // attention bien le faire partout : id de la checkbox, for du label, texte du label -->
+
+                            <?php
+                            foreach($categories as $categorie) {
+                            ?>
                                 <div class='checkboxdiv'>
-                                    <input type='checkbox' class='categorie_checkbox' id='categorie1'>
-                                    <label for='categorie1'>Categorie1</label>
+                                    <input type='radio' class='categorie_checkbox' 
+                                            id='<?php echo $categorie->libele ?>' 
+                                            value='<?php echo $categorie->libele ?>' 
+                                            name='category'
+                                            <?php if(isset($_POST['category']) && $_POST['category'] == $categorie->libele){echo 'checked';} ?>
+                                            >
+                                    <label for='<?php echo $categorie->libele ?>' ><?php echo $categorie->libele ?></label>
                                 </div>
-                                <div class='checkboxdiv'>
-                                    <input type='checkbox' class='categorie_checkbox' id='categorie2'>
-                                    <label for='categorie2'>Categorie2</label>
-                                </div>
-                                <div class='checkboxdiv'>
-                                    <input type='checkbox' class='categorie_checkbox' id='categorie3'>
-                                    <label for='categorie3'>Categorie3</label>
-                                </div>
+
+                            <?php
+                            }
+                            ?>
+
+                                <input type="submit" value="Valider" class="btn" name="filterCategoriesQuestionsFormSend" id="filterCategoriesQuestionsFormSend">
                             </div>
-                            <div id='filter_buttons'>
-                                <input type='submit' class='btn' name='filterbackBtn' id='filterbackBtn' value='Annuler'>
-                                <input type='submit' class='btn' name='filtersendBtn' id='filtersendBtn' value='Valider'>
-                            </div>
+
                         </form>
                     </div>
-            <?php
-                }
-            ?>
 
             <!-- div avec toutes les questions : modifier php -->
             <div id='allQuestions'>
+            
+                
 
             <?php
-            foreach($questionsValidate as $questionValidate) {
-            ?>
-                <div class=questionBG>
-                    <div class='question'>
-                        <a href='?route=question&idQuestion=<?php echo $questionValidate->idquestion ?>' class='questionTitle'><?php echo $questionValidate->title ?></a>
-                        <input type='submit' value='❤' class='like'></input>
+            if (empty($questionsValidate)) {
+                echo "<h2>Aucune quesiton n'est liée a la catégorie ". $_POST['category']." pour le moment</h2>";
+            }
+            else {
+                foreach($questionsValidate as $questionValidate) {
+                ?>
+                    <div class=questionBG>
+                        <div class='question'>
+                            <a href='?route=question&idQuestion=<?php echo $questionValidate->idquestion ?>' class='questionTitle'><?php echo $questionValidate->title ?></a>
+                            <input type='submit' value='❤' class='like'></input>
+                        </div>
                     </div>
-                </div>
 
-            <?php
+                <?php
+                }
             }
             ?>
                 
             </div>
         </div>
-    </div>
+</div>
+
+
+
+
+
+
+<script>
+    <?php include 'js/question/allQuestion.js'; ?>
+</script>
