@@ -10,7 +10,6 @@ class ConnexionController {
 			isset($_POST["lastname"])  &&
 			isset($_POST["email"])	   &&
 			isset($_POST["password"]))  {
-			echo($_POST["email"]);
 			// -- Si l'adresse n'existe pas 
 			if ( !Utilisator::checkIfEmailExist( $_POST["email"] )  || !Teacher::checkIfEmailExist( $_POST["email"]) ) {
 
@@ -48,7 +47,14 @@ class ConnexionController {
 
 				}
 
-				header("Location: ?route=utilisators");	
+				
+
+				header("Location: ?route=questions");	
+			}
+			else{
+				//Si l'email existe déjà
+				// TO DO message de modifications
+				include_once "view/utilisator/addFormUtilisatorError.php";
 			}
 		} else {
 			include_once "view/utilisator/addFormUtilisator.php";
@@ -81,7 +87,7 @@ class ConnexionController {
 					// -> Si oui envoyé à la route home
 					$_SESSION["utilisateur_conn"] =  $connectedUser;
 					$_SESSION["isTeacher"] = $isTeacher;
-					header("Location: ?route=home");			
+					header("Location: ?route=questions");			
 
 				}
 				else{

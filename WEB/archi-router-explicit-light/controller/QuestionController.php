@@ -5,9 +5,35 @@ $data = null;
 class QuestionController {
 
     public function displayAllQuestion() {
+        // -- TRAITEMENT FORM
+            // -- CATEGORIES
+        if (isset($_POST['filterCategoriesQuestionsFormSend'])) {
+                
+            if (!empty($_POST['category'])) {
+                // -- TODO : Faire requete get all validated by categories
+                $libeleCategorySelected = $_POST['category'];
+
+                $questionsValidate = Question::getAllValidateByCategory( $libeleCategorySelected );
+            } else {
+                // -- Si aucune catégories n'est selectionnée -> getAllValidate
+                $questionsValidate = Question::getAllValidate();
+            }
+        }
+        else {
+            $questionsValidate = Question::getAllValidate();
+        }
+
         // -- DATA : Une Question
         global $data;
         $data = Question::all();
+
+        $questionsNotValidate = Question::getAllNotValidate();
+        $categories = Category::all();
+
+        // Question::getAllValidateByCategories( $categoriesSelected );
+        // var_dump($categories);
+
+        // var_dump($_SESSION);
 
         // -- VIEWS
         include_once "view/parts/header.php";

@@ -187,14 +187,14 @@
                             <div class='haut_qst'>
                                 <div class='titre_sujet'>
                                     <h4>Sujet :</h4>
-                                    <p> <?php echo $answer->shortText ?> </p>
+                                    <p> <?php echo $data->title ?> </p>
                                 </div>
                                 <div class='btn_etit_response'>
                                     <form action='template_page_question.php' method='POST'><input type='submit' value='EDIT' name='edit'></input></form>
                                 </div>
                             </div>
                             <div class='texte_qst'>
-                                <p> <?php echo $answer->nameFile ?> </p>
+                                <p> <?php echo $answer->shortText ?> </p>
 
                             </div>
                         </div>

@@ -26,8 +26,69 @@ class Question extends Model {
         // var_dump($question);
 
 		return $question;
+	}
 
+	public static function getAllNotValidate() {
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE isValidate is null OR isValidate = false
+            ");
+        $st->execute();
 
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
+    }
+	
+	public static function getAllValidate() {
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE isValidate = true
+            ");
+        $st->execute();
+
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
+    }
+
+	public static function getAllValidateByCategory($libeleCategorySelected) {
+
+		// -- Get id of Category selected
+		$category = Category::getByLibele($libeleCategorySelected);
+
+		// -- Get All question linked with the id of the category
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE idcategory = :idcategory
+            ");
+		$st->bindValue(':idcategory', $category->idcategory);
+        $st->execute();
+
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
 	}
 
 	public function saveEditQuestion() {

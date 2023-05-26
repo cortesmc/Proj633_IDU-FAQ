@@ -8,7 +8,14 @@
 <body>
 
 	<header>
-        <H1>TITRE DU SITE</H1>
+
+        <div class='titre_site'>
+            <H1>FORUM INFO633</H1>
+        </div>
+        <div class='compte'>
+            <form action="" method="post"><input type="submit" value="Se deconnecter 👤"></form>
+        </div>
+
     </header>
 	
 	<nav>
