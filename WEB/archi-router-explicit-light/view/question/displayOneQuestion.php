@@ -122,7 +122,7 @@
                             </div>
                         </div>
                         <div class='texte_response'>
-                            <textarea name='shortTextAnswer' class='shorttext' placehorder='Ecrivez votre réponse ici'></textarea>
+                            <textarea name='shortTextAnswer' id='shortTextAnswer' class='shorttext' placehorder='Ecrivez votre réponse ici'></textarea>
                         </div>
                         <div class='drop_response'>
                             <input type='file' name='FileAnswer' class='longtext' placehorder='Mettez fotre fichier ici'></input>

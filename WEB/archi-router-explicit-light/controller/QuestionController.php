@@ -68,17 +68,18 @@ class QuestionController {
 
         // -- WRITE ANSWER
         if (isset($_POST['validateAnswerFormSend'])) {
-            // if( !is_null($_POST['shortTextAnswer']) || !is_null($_POST['FileAnswer']) ){
-            //     $answer = Answer::create();
+            if( !is_null($_POST['shortTextAnswer'])){
+                $answer = Answer::create();
 
-            //     $answer->shortText = $_POST['shortTextAnswer'];
-            //     $answer->nameFile = $_POST['FileAnswer'];
-            //     $answer->idteacher =$_SESSION['utilisator_conn']->
-            //     $answer->save();
-            // }
+                $answer->shortText = $_POST['shortTextAnswer'];
+                $answer->nameFile = $_POST['FileAnswer'];
+                $answer->idteacher = Teacher::getByEmail($_SESSION['utilisateur_conn']->email)->idteacher;
+                echo"$answer->idteacher";
+                $answer->idquestion = $_GET['idQuestion'];
+                $answer->save();
+            }
             
         }
-        // var_dump($_SESSION);
 
         // -- DATA
         global $data;
