@@ -3,10 +3,6 @@
 class Utilisator extends Model {
 
     public function save() {
-		// Données connues :
-		// $this->idbeer
-		// $this->name
-		// $this->color
 
 		$class = get_called_class(); 
 		$table = strtolower($class); 

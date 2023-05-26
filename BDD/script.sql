@@ -29,8 +29,8 @@ CREATE TABLE question(
     title       		varchar(100),
     descr       		varchar(10000),
     isValidate  		boolean,
-    idcategory  		integer NOT NULL,
-    idutilisator      	integer NOT NULL,
+    idcategory  		integer,
+    idutilisator      	integer,
     idteacher   		integer,
     CONSTRAINT PK_QUESTION PRIMARY KEY (idquestion)
 );
@@ -45,8 +45,8 @@ CREATE TABLE answer(
     idanswer    	integer auto_increment,
     shortText   	varchar(400),
     nameFile    	varchar(100),
-    idteacher   	integer NOT NULL,
-    idquestion      integer NOT NULL,
+    idteacher   	integer,
+    idquestion      integer,
     CONSTRAINT PK_ANSWER PRIMARY KEY (idanswer)
 );
 
@@ -122,23 +122,23 @@ INSERT INTO teacher (lastname, firstname, email, password)
 
 
 /*-- QUESTION --*/
--- INSERT INTO question (lastname, firstname, email, password)
--- 	VALUES ("Le sujet de la question que je ne comprends pas !",
---             "Vraiment un texte super long pour décrire la question, laaaaaaaaaaaaaa !", 
---             'NULL', 
---             '1', '1', '1');
+-- INSERT INTO question (title, descr, isValidate, idcategory, idutilisator, idteacher)
+-- 	VALUES ("Titre de la question",
+--             "Description de la question", 
+--             '0', 
+--             'NULL', 'NULL', 'NULL');
 
 
-/*-- QUESTION --*/
-INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
-	VALUES ("La reponse 1 a la question 1",
-            "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
-            '1', '1');
+-- /*-- ANSWERS --*/
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 1 a la question 1",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '1', '1');
 
-INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
-	VALUES ("La reponse 2 a la question 1",
-            "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
-            '1', '1');
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 2 a la question 1",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '1', '1');
 
 
 

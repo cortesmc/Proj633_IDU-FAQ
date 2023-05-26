@@ -5,13 +5,14 @@ $data = null;
 class QuestionController {
 
     public function displayAllQuestion() {
-        // -- TRAITEMENT FORM
-            // -- CATEGORIES
+        // -- TRAITEMENT FORMULAIRES
+
+            // -- CATEGORIES FILTER
         if (isset($_POST['filterCategoriesQuestionsFormSend'])) {
                 
-            if (!empty($_POST['category'])) {
+            if (!empty($_POST['categoryFilter'])) {
                 // -- TODO : Faire requete get all validated by categories
-                $libeleCategorySelected = $_POST['category'];
+                $libeleCategorySelected = $_POST['categoryFilter'];
 
                 $questionsValidate = Question::getAllValidateByCategory( $libeleCategorySelected );
             } else {
@@ -23,6 +24,20 @@ class QuestionController {
             $questionsValidate = Question::getAllValidate();
         }
 
+            // -- ADD QUESTION 
+        if (isset($_POST['addQuestionFormSend'])) {
+            if( !is_null($_POST['addQuestionTitle']) && !is_null($_POST['addQuestionDescr']) && $_POST['categorySelected'] != 'default' ) {
+
+                $question = Question::create();
+                $question->title = $_POST['addQuestionTitle'];
+                $question->descr = $_POST['addQuestionDescr'];
+                $question->idcategory = $_POST['categorySelected'];
+                $question->idutilisator = $_SESSION['utilisateur_conn']->idutilisator;       
+                $question->save();
+
+            }
+        }
+
         // -- DATA : Une Question
         global $data;
         $data = Question::all();
@@ -30,10 +45,7 @@ class QuestionController {
         $questionsNotValidate = Question::getAllNotValidate();
         $categories = Category::all();
 
-        // Question::getAllValidateByCategories( $categoriesSelected );
-        // var_dump($categories);
-
-        // var_dump($_SESSION);
+        var_dump($questionsValidate);
 
         // -- VIEWS
         include_once "view/parts/header.php";

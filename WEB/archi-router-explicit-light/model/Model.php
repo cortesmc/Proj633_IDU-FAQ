@@ -19,7 +19,6 @@ class Model {
 			$o = new $class();
 			// CREATE = INSERT
 
-
 			// -- Récupération des colonnes de la table
 			$stm = $db->prepare("SHOW COLUMNS FROM $table");
 			$stm->execute();

@@ -76,7 +76,7 @@ class Question extends Model {
         $table =  strtolower($class);
         $st = db()->prepare("SELECT *
 							FROM question
-							WHERE idcategory = :idcategory
+							WHERE idcategory = :idcategory AND isValidate = 1
             ");
 		$st->bindValue(':idcategory', $category->idcategory);
         $st->execute();
@@ -129,7 +129,28 @@ class Question extends Model {
 
 	}
 
+	public function save() {
+		$class = get_called_class(); 
+		$table = strtolower($class); 
 
+		$stm = db()->prepare("
+			UPDATE question
+			SET title=:title,
+                descr=:descr,
+				idcategory=:idcategory,
+				idutilisator=:idutilisator
+			WHERE idquestion=:idquestion
+			");
+            
+		$stm->bindValue(":title", $this->title);
+		$stm->bindValue(":descr", $this->descr);
+		$stm->bindValue(":idcategory", $this->idcategory);
+		$stm->bindValue(":idutilisator", $this->idutilisator);
+		
+		$stm->bindValue(":idquestion", $this->idquestion);	
 
+		$stm->execute();
+
+	}
 
 }
