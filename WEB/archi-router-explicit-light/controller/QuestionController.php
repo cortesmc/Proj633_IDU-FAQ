@@ -39,6 +39,21 @@ class QuestionController {
             $question->saveValidateQuestion();
         }
 
+
+        // -- WRITE ANSWER
+        if (isset($_POST['validateAnswerFormSend'])) {
+            // if( !is_null($_POST['shortTextAnswer']) || !is_null($_POST['FileAnswer']) ){
+            //     $answer = Answer::create();
+
+            //     $answer->shortText = $_POST['shortTextAnswer'];
+            //     $answer->nameFile = $_POST['FileAnswer'];
+            //     $answer->idteacher =$_SESSION['utilisator_conn']->
+            //     $answer->save();
+            // }
+            
+        }
+        // var_dump($_SESSION);
+
         // -- DATA
         global $data;
         $data = Question::getByID($_GET['idQuestion']);
@@ -51,6 +66,7 @@ class QuestionController {
         // echo "pppappapap";
 
         
+
 
 
 

@@ -106,13 +106,13 @@
             <?php
                 if (isset($_POST["write_answer"])){
                     echo"
-                    <form action='template_page_question.php' method='POST' class='form_write_answer'>
+                    <form action='' method='POST' class='form_write_answer'>
                     <div class='btn_for_answer'>
                         <div class='btn_annuler_answer'>
                             <input type='submit' value='Annuler reponse' name='annuler_reponse'></input>
                         </div>
                         <div class='btn_valid_answer'>
-                            <input type='submit' value='Valider reponse' name='valider_reponse'></input>
+                            <input type='submit' value='Valider reponse' name='validateAnswerFormSend'></input>
                         </div>
                     </div>
                     <div class='response_write'>
@@ -122,10 +122,10 @@
                             </div>
                         </div>
                         <div class='texte_response'>
-                            <textarea name='shorttext' class='shorttext' placehorder='Ecrivez votre réponse ici'></textarea>
+                            <textarea name='shortTextAnswer' class='shorttext' placehorder='Ecrivez votre réponse ici'></textarea>
                         </div>
                         <div class='drop_response'>
-                            <input type='file' name='longtext' class='longtext' placehorder='Mettez fotre fichier ici'></input>
+                            <input type='file' name='FileAnswer' class='longtext' placehorder='Mettez fotre fichier ici'></input>
                         </div>
                     </div>
                     </form>
@@ -134,7 +134,7 @@
                 else{
                     echo"
                     <div class='btn_write'>
-                        <form action='template_page_question.php' method='POST'><input type='submit' value='Write answer' name='write_answer'></input></form>
+                        <form action='' method='POST'><input type='submit' value='Write answer' name='write_answer'></input></form>
                     </div>
                     ";
                 }
