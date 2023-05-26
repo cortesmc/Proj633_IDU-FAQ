@@ -193,9 +193,11 @@
                                     <form action='template_page_question.php' method='POST'><input type='submit' value='EDIT' name='edit'></input></form>
                                 </div>
                             </div>
-                            <div class='texte_qst'>
+                            <div class='texte_answer'>
                                 <p> <?php echo $answer->shortText ?> </p>
-
+                            </div>
+                            <div class='file_qst'>
+                            <form action='template_page_question.php' method='POST'><input type='submit' value='VOIR LONG TEXT' name='view_long_text'></input></form>
                             </div>
                         </div>
                     </div>
