@@ -15,17 +15,33 @@
             <?php
             if (isset($_POST["ask_question"])){
             ?>
-            <form action='page_all_questions.php' method='post'>
-                <div id='QBtns'>
-                    <input type='submit' class='btn' id='backBtn' value='Annuler'>
-                    <input type='submit' class='btn' id='sendBtn' value='Envoyer'>
-                </div>
+            <form action='' method='post'>
+                
                 <div id='questionEntry'>
                     <div id='writeHeader'>
                         <span id='subject'>Sujet : </span>
-                        <input type='text' id='subjectTA'>
+                        <input type='text' id='subjectTA' name="addQuestionTitle">
                     </div>
-                    <textarea name='questionTA' id='TextAreaQuestion' cols='30' rows='10'></textarea>
+
+                    <select name="categorySelected" id="categorySelected">
+                        <option value="default">-- Catégorie --</option>
+                    <?php
+                    foreach($categories as $categoryQuestion) {
+                    ?>
+                        <option value=" <?php echo $categoryQuestion->idcategory; ?>"> <?php echo $categoryQuestion->libele; ?> </option>;
+                    <?php
+                    }
+                    ?>
+            
+
+                    </select>
+
+                    <textarea id='TextAreaQuestion' cols='30' rows='10' name="addQuestionDescr"></textarea>
+                </div>
+
+                <div id='QBtns'>
+                    <input type='submit' class='btn' id='backBtn' value='Annuler'>
+                    <input type='submit' class='btn' id='sendBtn' name="addQuestionFormSend" value='Envoyer'>
                 </div>
             </form>
             <?php
@@ -108,16 +124,16 @@
                             // attention bien le faire partout : id de la checkbox, for du label, texte du label -->
 
                             <?php
-                            foreach($categories as $categorie) {
+                            foreach($categories as $categoryFilter) {
                             ?>
                                 <div class='checkboxdiv'>
                                     <input type='radio' class='categorie_checkbox' 
-                                            id='<?php echo $categorie->libele ?>' 
-                                            value='<?php echo $categorie->libele ?>' 
-                                            name='category'
-                                            <?php if(isset($_POST['category']) && $_POST['category'] == $categorie->libele){echo 'checked';} ?>
+                                            id='<?php echo $categoryFilter->libele ?>' 
+                                            value='<?php echo $categoryFilter->libele ?>' 
+                                            name='categoryFilter'
+                                            <?php if(isset($_POST['categoryFilter']) && $_POST['categoryFilter'] == $categoryFilter->libele){echo 'checked';} ?>
                                             >
-                                    <label for='<?php echo $categorie->libele ?>' ><?php echo $categorie->libele ?></label>
+                                    <label for='<?php echo $categoryFilter->libele ?>' ><?php echo $categoryFilter->libele ?></label>
                                 </div>
 
                             <?php
@@ -136,8 +152,11 @@
                 
 
             <?php
-            if (empty($questionsValidate)) {
-                echo "<h2>Aucune quesiton n'est liée a la catégorie ". $_POST['category']." pour le moment</h2>";
+            if (empty($questionsValidate) && isset($_POST['categoryFilter'])) {
+                echo "<h2>Aucune quesiton n'est liée a la catégorie ". $_POST['categoryFilter']." pour le moment</h2>";
+            }
+            else if (empty($questionsValidate)) {
+                echo "<h2>Aucune quesiton n'est validée pour le moment</h2>";
             }
             else {
                 foreach($questionsValidate as $questionValidate) {
