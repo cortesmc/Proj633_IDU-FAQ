@@ -84,11 +84,26 @@ class QuestionController {
                 $answer = Answer::create();
 
                 $answer->shortText = $_POST['shortTextAnswer'];
-                $answer->nameFile = $_POST['FileAnswer'];
+                $answer->nameFile = $_FILES['FileAnswer']['name'];
                 $answer->idteacher = Teacher::getByEmail($_SESSION['utilisateur_conn']->email)->idteacher;
-                echo"$answer->idteacher";
                 $answer->idquestion = $_GET['idQuestion'];
                 $answer->save();
+
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    // Vérifier si le fichier a été correctement téléchargé sans erreur
+                    if (isset($_FILES['FileAnswer']) && $_FILES['FileAnswer']['error'] === UPLOAD_ERR_OK) {
+                        $nomFichier = $_FILES['FileAnswer']['name'];
+                        $fichierTemporaire = $_FILES['FileAnswer']['tmp_name'];
+                        
+                        // Déplacer le fichier temporaire vers un emplacement permanent
+                        move_uploaded_file($fichierTemporaire, '/home/femathie/public_html/upload_tmp/' . $nomFichier); // il faut mettre son user pour savoir dans quelle public_html il faut mettre le fichier
+                        
+                        // echo 'Le fichier a été téléchargé avec succès.';
+                    } 
+                    // else {
+                    //     echo 'Une erreur s\'est produite lors du téléchargement du fichier.';
+                    // }
+                }
             }
             
         }

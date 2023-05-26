@@ -106,7 +106,7 @@
             <?php
                 if (isset($_POST["write_answer"])){
                     echo"
-                    <form action='' method='POST' class='form_write_answer'>
+                    <form action='' method='POST' class='form_write_answer' enctype='multipart/form-data'>
                     <div class='btn_for_answer'>
                         <div class='btn_annuler_answer'>
                             <input type='submit' value='Annuler reponse' name='annuler_reponse'></input>
