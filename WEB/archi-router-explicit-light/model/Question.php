@@ -161,7 +161,7 @@ class Question extends Model {
         $table =  strtolower($class);
         $st = db()->prepare("SELECT *
 							FROM question
-							WHERE title LIKE :research AND isValidate = 1
+							WHERE (title LIKE :research OR descr LIKE :research) AND isValidate = 1
             ");
 		$st->bindValue(":research","%".$research."%");
         $st->execute();
@@ -189,7 +189,7 @@ class Question extends Model {
         $table =  strtolower($class);
         $st = db()->prepare("SELECT *
 							FROM question
-							WHERE title LIKE :research AND isValidate = 1 AND idcategory = :idcategory
+							WHERE (title LIKE :research OR descr LIKE :research) AND isValidate = 1 AND idcategory = :idcategory
             ");
 		$st->bindValue(":research","%".$research."%");
 		$st->bindValue(':idcategory', $category->idcategory);
