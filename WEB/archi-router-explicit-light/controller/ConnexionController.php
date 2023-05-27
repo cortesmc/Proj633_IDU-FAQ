@@ -54,7 +54,6 @@ class ConnexionController {
 			}
 			else{
 				//Si l'email existe déjà
-				// TO DO message de modifications
 				include_once "view/utilisator/addFormUtilisatorError.php";
 			}
 		} else {
