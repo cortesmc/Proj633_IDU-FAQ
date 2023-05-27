@@ -7,7 +7,9 @@ class QuestionController {
     public function displayAllQuestion() {
         // -- TRAITEMENT FORMULAIRES
 
-            // -- CATEGORIES FILTER
+        //    -- CATEGORIES FILTER
+
+        // Cas ou un filtre est choisi
         if (isset($_POST['filterCategoriesQuestionsFormSend'])) {
                 
             if (!empty($_POST['categoryFilter'])) {
@@ -19,6 +21,16 @@ class QuestionController {
                 // -- Si aucune catégories n'est selectionnée -> getAllValidate
                 $questionsValidate = Question::getAllValidate();
             }
+        }
+        //Cas ou une recherche est faite
+        elseif(!isset($_POST['filterCategoriesQuestionsFormSend']) && isset($_POST["searchBar"])){
+            if(isset($_POST["searchBar"])){
+                if(!empty($_POST["searchBar"])){
+                    $search = $_POST["searchBar"];
+                    $questionsValidate = Question::getAllValidateAndResearch($search);
+                }
+            }
+
         }
         else {
             $questionsValidate = Question::getAllValidate();
@@ -44,9 +56,6 @@ class QuestionController {
 
         $questionsNotValidate = Question::getAllNotValidate();
         $categories = Category::all();
-
-        var_dump($questionsValidate);
-
         // -- VIEWS
         include_once "view/parts/header.php";
 		include_once "view/question/displayAllQuestion.php";

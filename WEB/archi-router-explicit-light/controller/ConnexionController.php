@@ -78,7 +78,6 @@ class ConnexionController {
 			}
 			if(count($result)!=0){
 				$connectedUser = $result[0];
-				// var_dump($connectedUser);
 
 				// l'email est présent dans la base de donnée
 				//Vérification si le mot de passe est bien le même

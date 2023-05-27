@@ -10,9 +10,9 @@ class DeconnexionController {
         /* On détruit la session en cours et on recharge la page de connexion 
         */
         //echo("Deconnexion demandée");
-        session_destroy();
+        //session_destroy();
         //Problèmes echo ou var dump se trouuvant avec ce header cependant impossible de trouver ou...
-        header("Location : ?route=connexion");
+        //header("Location : ?route=connexion");
         
 
     }

@@ -153,4 +153,56 @@ class Question extends Model {
 
 	}
 
+
+
+	public static function getAllValidateAndResearch($research) {
+		// -- Get All question with a part of what is research
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE title LIKE :research AND isValidate = 1
+            ");
+		$st->bindValue(":research","%".$research."%");
+        $st->execute();
+
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
+	}
+
+
+	public static function getAllValidateAndResearchAndByCategory($research,$libeleCategorySelected) {
+
+
+		// -- Get id of Category selected
+		$category = Category::getByLibele($libeleCategorySelected);
+
+
+		// -- Get All question with a part of what is research and categories
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE title LIKE :research AND isValidate = 1 AND idcategory = :idcategory
+            ");
+		$st->bindValue(":research","%".$research."%");
+		$st->bindValue(':idcategory', $category->idcategory);
+        $st->execute();
+
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
+	}
+
 }

@@ -61,7 +61,7 @@
         ?>
        
         <!-- PHP : unvalidated_container apparait uniquement si un prof est connecté -->
-        <?php 
+        <?php
         if ($_SESSION['isTeacher']) {
         ?>
             <div id='unvalidated_container' class='container leftContainer'>
@@ -105,7 +105,8 @@
                 <span>Recherche : </span>
                 <div id='searchBarDiv'>
                     <form action='' method='post'>
-                        <input type='text' id='searchBar'>
+                        <input type='text' id='searchBar' name='searchBar'>
+                        <input type="submit" value="Valider" class="btn" name="searchSend" id="searchSend">
                     </form>
                 </div>
                 <div id='filter'>
