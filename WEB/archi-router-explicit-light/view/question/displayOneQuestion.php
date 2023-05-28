@@ -112,8 +112,12 @@
 
             if ($_SESSION['isTeacher']) {
                 if (isset($_POST["write_answer"])){
-                    echo"
+
+                    
+            ?>
                     <form action='' method='POST' class='form_write_answer' enctype='multipart/form-data'>
+                    <input type="hidden" id="writeAnswerIdAnswer" name="writeAnswerIdAnswer" value="<?php echo Answer::getLastId() + 1?>">
+
                     <div class='btn_for_answer'>
                         <div class='btn_annuler_answer'>
                             <input type='submit' value='Annuler reponse' name='annuler_reponse'></input>
@@ -136,14 +140,16 @@
                         </div>
                     </div>
                     </form>
-                    ";
+                
+                <?php
                 }
                 else {
-                    echo"
+                ?>
+                    
                     <div class='btn_write'>
                         <form action='' method='POST'><input type='submit' value='Write answer' name='write_answer'></input></form>
                     </div>
-                    ";
+                <?php
                 }
             }
                 
@@ -155,7 +161,7 @@
             <?php
             
             foreach($data->answers as $answer) {
-            
+                            
                 if (isset($_POST["edit"])){
                 ?>
                        
@@ -215,9 +221,33 @@
                             <div class='texte_answer'>
                                 <p> <?php echo $answer->shortText ?> </p>
                             </div>
+
+                            
+
+                            <?php
+                            if ($answer->nameFile == NULL) {
+                                echo "<h3>Aucune réponse longue pour cette question</h3>";
+                            } else {
+                            ?>
+
                             <div class='file_qst'>
-                            <form action='template_page_question.php' method='POST'><input type='submit' value='VOIR LONG TEXT' name='view_long_text'></input></form>
+                                <form action='' method='POST'><input type='submit' value='VOIR LONG TEXT' name=<?php echo 'view_long_text_' . $answer->idanswer ?>  ></input></form>
                             </div>
+
+                            <?php
+                                if (isset($_POST['view_long_text_' . $answer->idanswer])) {
+                                                                
+                                    
+                                    $pathFile = 'data/question_' . $data->idquestion . '/' . $answer->nameFile;
+
+                                    // Lecture du fichier et stockage du contenu dans une variable
+                                    $contentFile = file_get_contents($pathFile);
+
+                                    echo $contentFile;
+                            }
+                        }
+                            ?>
+                            
                         </div>
                     </div>
             <?php
@@ -228,4 +258,3 @@
             </div>
         </div>
     </div>
-

@@ -23,6 +23,32 @@ class Answer extends Model {
         return $list;
     }
 
+    public function getNbTotal() {
+        $class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT count(*) as nbTtotal
+            FROM answer
+            ");
+
+        $st->execute();
+		$row = $st->fetch(PDO::FETCH_ASSOC);
+
+        return $row['nbTtotal'];
+    }
+
+    public function getLastId() {
+        $class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT max(idanswer) as maxiD
+                            FROM answer
+            ");
+
+        $st->execute();
+		$row = $st->fetch(PDO::FETCH_ASSOC);
+
+        return $row['maxiD'];
+    }
+
     public function save() {
 		// Données connues :
 		// $this->idbeer

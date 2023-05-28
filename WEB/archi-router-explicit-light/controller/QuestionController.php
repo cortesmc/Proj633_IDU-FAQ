@@ -88,9 +88,7 @@ class QuestionController {
 
 
 
-        // -- DATA
-        global $data;
-        $data = Question::getByID($_GET['idQuestion']);
+
         
         if ($_SESSION['isTeacher']) 
             $teacherConnected = Teacher::getByEmail( $_SESSION['utilisateur_conn']->email );
@@ -99,11 +97,17 @@ class QuestionController {
 
         // -- WRITE ANSWER
         if (isset($_POST['validateAnswerFormSend'])) {
+
+            var_dump($_POST);
+            var_dump($_FILES);
             if( !is_null($_POST['shortTextAnswer'])){
                 $answer = Answer::create();
 
                 $answer->shortText = $_POST['shortTextAnswer'];
-                $answer->nameFile = $_FILES['FileAnswer']['name'];
+                if ($_FILES['FileAnswer']['name'] != '')
+                    $answer->nameFile = 'answer_'. $_POST['writeAnswerIdAnswer'] .'_prof' . $_SESSION['utilisateur_conn']->idutilisator . '.txt';
+                else 
+                    $answer->nameFile = NULL;
                 $answer->idteacher = Teacher::getByEmail($_SESSION['utilisateur_conn']->email)->idteacher;
                 $answer->idquestion = $_GET['idQuestion'];
                 $answer->save();
@@ -114,10 +118,13 @@ class QuestionController {
                     // Vérifier si le fichier a été correctement téléchargé sans erreur
                     if (isset($_FILES['FileAnswer']) && $_FILES['FileAnswer']['error'] === UPLOAD_ERR_OK) {
                         
+                        var_dump($_POST['writeAnswerIdAnswer']);
+
                         // -- NOM DU FICHIER :
-                        $nameFile = 'answer_prof' . $_SESSION['utilisateur_conn']->idutilisator . '.txt';
+                        $nameFile = 'answer_'. $_POST['writeAnswerIdAnswer'] .'_prof' . $_SESSION['utilisateur_conn']->idutilisator . '.txt';
                         $fichierTemporaire = $_FILES['FileAnswer']['tmp_name'];
-                                                
+                        
+
 
                         // -- CREATION DOSSIER POUR UPLOAD
                         // Get dossier parent
@@ -126,7 +133,7 @@ class QuestionController {
                         $dataDirectory = 'data';
                         $fullPath = implode(DIRECTORY_SEPARATOR, [$parentDirectory, $dataDirectory]);
 
-                        $nameDirectory = "question_" . $data->idquestion;
+                        $nameDirectory = "question_" . Question::getByID($_GET['idQuestion'])->idquestion;
 
                         // Chemin du dossier à créer
                         $pathDirectory = '../' . $fullPath . '/' . $nameDirectory;
@@ -153,6 +160,12 @@ class QuestionController {
             }
             
         }
+
+        // -- DATA
+        global $data;
+        $data = Question::getByID($_GET['idQuestion']);
+
+        // var_dump(Answer::getNbTotal());
         
 
         // -- VIEWS
