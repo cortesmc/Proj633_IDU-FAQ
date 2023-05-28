@@ -159,6 +159,18 @@ span{
     margin-right: 0px;
 }
 
+#filterDiv{
+    padding: 1em;
+    border: 2px solid #59b9ea;
+    border-radius: 20px;
+    background-color: white;
+}
+
+#filter_buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .questionBG{
     background-color: #59b9ea;
     border-radius: 20px;
