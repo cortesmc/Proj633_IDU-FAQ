@@ -10,7 +10,9 @@ body{
     background-color: #e9eeff;
 }
 
-
+#error{
+    color : red;
+}
 h1{
     font-size: 30px;
     font-weight: bold;

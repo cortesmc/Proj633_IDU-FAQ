@@ -26,8 +26,69 @@ class Question extends Model {
         // var_dump($question);
 
 		return $question;
+	}
 
+	public static function getAllNotValidate() {
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE isValidate is null OR isValidate = false
+            ");
+        $st->execute();
 
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
+    }
+	
+	public static function getAllValidate() {
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE isValidate = true
+            ");
+        $st->execute();
+
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
+    }
+
+	public static function getAllValidateByCategory($libeleCategorySelected) {
+
+		// -- Get id of Category selected
+		$category = Category::getByLibele($libeleCategorySelected);
+
+		// -- Get All question linked with the id of the category
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE idcategory = :idcategory AND isValidate = 1
+            ");
+		$st->bindValue(':idcategory', $category->idcategory);
+        $st->execute();
+
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
 	}
 
 	public function saveEditQuestion() {
@@ -68,7 +129,80 @@ class Question extends Model {
 
 	}
 
+	public function save() {
+		$class = get_called_class(); 
+		$table = strtolower($class); 
+
+		$stm = db()->prepare("
+			UPDATE question
+			SET title=:title,
+                descr=:descr,
+				idcategory=:idcategory,
+				idutilisator=:idutilisator
+			WHERE idquestion=:idquestion
+			");
+            
+		$stm->bindValue(":title", $this->title);
+		$stm->bindValue(":descr", $this->descr);
+		$stm->bindValue(":idcategory", $this->idcategory);
+		$stm->bindValue(":idutilisator", $this->idutilisator);
+		
+		$stm->bindValue(":idquestion", $this->idquestion);	
+
+		$stm->execute();
+
+	}
 
 
+
+	public static function getAllValidateAndResearch($research) {
+		// -- Get All question with a part of what is research
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE (title LIKE :research OR descr LIKE :research) AND isValidate = 1
+            ");
+		$st->bindValue(":research","%".$research."%");
+        $st->execute();
+
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
+	}
+
+
+	public static function getAllValidateAndResearchAndByCategory($research,$libeleCategorySelected) {
+
+
+		// -- Get id of Category selected
+		$category = Category::getByLibele($libeleCategorySelected);
+
+
+		// -- Get All question with a part of what is research and categories
+		$class = get_called_class();
+        $table =  strtolower($class);
+        $st = db()->prepare("SELECT *
+							FROM question
+							WHERE (title LIKE :research OR descr LIKE :research) AND isValidate = 1 AND idcategory = :idcategory
+            ");
+		$st->bindValue(":research","%".$research."%");
+		$st->bindValue(':idcategory', $category->idcategory);
+        $st->execute();
+
+        $list = array();
+        while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $h = new $class();
+            foreach($row as $field=>$value)
+                $h->$field = $value;
+            $list[] = $h;
+        }
+        return $list;
+	}
 
 }

@@ -1,6 +1,6 @@
 	</section>
 
-	<footer>CC BY NC SA 4.0 - LD</footer>
+	<footer>FORUM QUESTION INFO633</footer>
 
 </body>
 </html>

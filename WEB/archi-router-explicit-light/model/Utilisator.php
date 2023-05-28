@@ -3,10 +3,6 @@
 class Utilisator extends Model {
 
     public function save() {
-		// Données connues :
-		// $this->idbeer
-		// $this->name
-		// $this->color
 
 		$class = get_called_class(); 
 		$table = strtolower($class); 
@@ -53,6 +49,9 @@ class Utilisator extends Model {
 	}
 
 	public static function checkIfEmailExist($email) {
+		/*
+		Si l'email est présent dans la table Utilisator -> return true : else -> return false
+		*/ 
 		return (Utilisator::getByEmail($email) != false) ? true : false;
 	}
 	

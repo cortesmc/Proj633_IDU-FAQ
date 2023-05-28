@@ -29,8 +29,8 @@ CREATE TABLE question(
     title       		varchar(100),
     descr       		varchar(10000),
     isValidate  		boolean,
-    idcategory  		integer NOT NULL,
-    idutilisator      	integer NOT NULL,
+    idcategory  		integer,
+    idutilisator      	integer,
     idteacher   		integer,
     CONSTRAINT PK_QUESTION PRIMARY KEY (idquestion)
 );
@@ -45,8 +45,8 @@ CREATE TABLE answer(
     idanswer    	integer auto_increment,
     shortText   	varchar(400),
     nameFile    	varchar(100),
-    idteacher   	integer NOT NULL,
-    idquestion      integer NOT NULL,
+    idteacher   	integer,
+    idquestion      integer,
     CONSTRAINT PK_ANSWER PRIMARY KEY (idanswer)
 );
 
@@ -110,36 +110,141 @@ INSERT INTO utilisator (lastname, firstname, email, password)
 INSERT INTO utilisator (lastname, firstname, email, password)
 	VALUES ("DUPONT5", "Henri5", "henro5@gmail.com", "henri5Pwd");
 
+INSERT INTO utilisator (lastname, firstname, email, password)
+	VALUES ("FERREIRA", "Mathieu", "mathieu@gmail.com", "mdp");
+
+INSERT INTO utilisator (lastname, firstname, email, password)
+	VALUES ("LEBON", "Mathys", "mathys@gmail.com", "caca");
+
+INSERT INTO utilisator (lastname, firstname, email, password)
+	VALUES ("CADOUX", "Lila", "lila@gmail.com", "test");
+
+INSERT INTO utilisator (lastname, firstname, email, password)
+	VALUES ("CORTES", "Andres", "andres@gmail.com", "test");
+
+INSERT INTO utilisator (lastname, firstname, email, password)
+	VALUES ("IBNABDELJALIL", "Adam", "adam@gmail.com", "test");
+
+INSERT INTO utilisator (lastname, firstname, email, password)
+	VALUES ("RATTANAVONG", "Arthur", "arthur@gmail.com", "test");
+
 
 /*-- CATEGORY --*/
 INSERT INTO category (libele)
 	VALUES ("PHP");
+
+INSERT INTO category (libele)
+	VALUES ("HTML");
+
+INSERT INTO category (libele)
+	VALUES ("CSS");
+
+INSERT INTO category (libele)
+	VALUES ("JAVASCRIPT");
 
 
 /*-- TEACHER --*/
 INSERT INTO teacher (lastname, firstname, email, password)
 	VALUES ("Cortes", "Andres", "acortes@univ-smb.fr", "petitpoussin");
 
+INSERT INTO teacher (lastname, firstname, email, password)
+	VALUES ("PLEBANI", "Theo", "theo@univ-smb.fr", "petitpoussin");
+
+INSERT INTO teacher (lastname, firstname, email, password)
+	VALUES ("FERREIRA", "Mathieu", "mathieu@univ-smb.fr", "petitpoussin");
+
+INSERT INTO teacher (lastname, firstname, email, password)
+	VALUES ("LEBON", "Mathys", "mathys@univ-smb.fr", "petitpoussin");
+
+INSERT INTO teacher (lastname, firstname, email, password)
+	VALUES ("CADOUX", "Lila", "lila@univ-smb.fr", "petitpoussin");
+
+INSERT INTO teacher (lastname, firstname, email, password)
+	VALUES ("IBNABDELJALIL", "Adam", "adam@univ-smb.fr", "petitpoussin");
+
+INSERT INTO teacher (lastname, firstname, email, password)
+	VALUES ("RATTANAVONG", "Arthur", "arthur@univ-smb.fr", "petitpoussin");
 
 /*-- QUESTION --*/
--- INSERT INTO question (lastname, firstname, email, password)
--- 	VALUES ("Le sujet de la question que je ne comprends pas !",
---             "Vraiment un texte super long pour décrire la question, laaaaaaaaaaaaaa !", 
---             'NULL', 
---             '1', '1', '1');
+-- INSERT INTO question (title, descr, isValidate, idcategory, idutilisator, idteacher)
+-- 	VALUES ("Titre de la question",
+--             "Description de la question", 
+--             '0', 
+--             'NULL', 'NULL', 'NULL');
+
+-- INSERT INTO question (title, descr, isValidate, idcategory, idutilisator, idteacher)
+-- 	VALUES ("Titre de la question 2 ",
+--             "Description de la question 2", 
+--             '0', 
+--             'NULL', 'NULL', 'NULL');
+
+-- INSERT INTO question (title, descr, isValidate, idcategory, idutilisator, idteacher)
+-- 	VALUES ("Titre de la question 3",
+--             "Description de la question 3", 
+--             '0', 
+--             'NULL', 'NULL', 'NULL');
+
+-- INSERT INTO question (title, descr, isValidate, idcategory, idutilisator, idteacher)
+-- 	VALUES ("Titre de la question 3",
+--             "Description de la question 4", 
+--             '0', 
+--             'NULL', 'NULL', 'NULL');
 
 
-/*-- QUESTION --*/
-INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
-	VALUES ("La reponse 1 a la question 1",
-            "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
-            '1', '1');
+-- /*-- ANSWERS --*/
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 1 a la question 1",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '1', '1');
 
-INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
-	VALUES ("La reponse 2 a la question 1",
-            "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
-            '1', '1');
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 2 a la question 1",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '1', '1');
 
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 3 a la question 1",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '2', '1');
+
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 4 a la question 1",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '3', '1');
+
+
+
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 1 a la question 2",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '3', '2');
+
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 2 a la question 2",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '1', '2');
+
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 3 a la question 2",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '5', '2');
+
+
+
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 1 a la question 3",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '6', '3');
+
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 2 a la question 3",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '4', '3');
+
+-- INSERT INTO answer (shortText, nameFile, idteacher, idquestion)
+-- 	VALUES ("La reponse 3 a la question 3",
+--             "Vraiment un texte super long pour décrire la reponse, iciciiicic !", 
+--             '7', '3');
 
 
 

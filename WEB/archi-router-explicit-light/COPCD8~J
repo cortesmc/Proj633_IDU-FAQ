@@ -1,0 +1,59 @@
+
+<!--
+Code HTML de la réponse longue à la FAQ numéro 10234
+Code NON AUTONOME, à inclure dans une page valide.
+
+Q
+Quelle est la signification de l'unité de mesure "em" dans la définition de la taille des polices en CSS, et comment peut-elle être utilisée dans le contexte du responsive design ?
+
+Réponse courte
+L'unité "em" est une dimension proportionnelle liée à la taille de la police en cours d'utilisation. 
+Dans un contexte de responsive design, il est possible par exemple de fixer une taille de police de base, au niveau du body, qui soit spécifique pour différents types d'écran, puis de renseigner toutes les autres grandeurs en "em". Ces grandeurs s'adapteront systématiquement à la taille de base.
+-->
+
+<article class="reponse_longue">
+
+<p>Les dimensions proportionnelles dépendent d'autres valeurs. L'unité "em" est une proportion de la taille de la police fixée avec font-size au sein du première élément parent. Si l'attribut font-size n'a pas été fixé dans l'arborescence, y compris avec une valeur par défaut au niveau du navigateur, alors 1em = 16px.</p>
+
+<a href=" https://www.codeur.com/tuto/css/unite-de-mesure-taille-px-em-rem/"> Un lien intéressant</a>
+
+<p>Exemple d'utilisation:</p>
+
+<pre>
+    body{
+        font-size: 20px;
+    }
+    h1 {
+        font-size : 2em;
+    }
+    p{
+        font-size : 0.8em;
+    }
+</pre>
+
+<p>Essayez par vous même en modifiant, ci-dessous, la dimension en pixel de la taille de la police définie dans le body. </p>
+
+<iframe src="https://trinket.io/embed/html/5bddd2284e" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+<p>Exemple d'utilisation dans un contexte de responsive design: la taille de la police est fixée au niveau du body pour 2 situations: pour les écrans de petit taille (16px) et pur les écrans de grandes tailles (32px). Automatiquement les titres seront de 32 pixels sur les écrans de petites tailles (2em=2x16px) et de 60px sur les écrans de grande taille (2em = 2x30px).</p>
+
+<pre>
+    @media (max-width:1250px){ /*écran inférieur à 1250 pixel de large*/
+        body{
+            font-size: 16px;
+        }
+    }
+    @media (min-width:1250px){ /*écran supérieur à 1250 pixel de large*/
+        body{
+            font-size: 30px;
+        }
+    }
+    
+    h1 {
+        font-size : 2em;
+    }
+    p{
+        font-size : 0.8em;
+    }
+
+</article>

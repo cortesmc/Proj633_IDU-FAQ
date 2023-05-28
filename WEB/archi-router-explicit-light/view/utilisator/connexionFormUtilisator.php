@@ -42,7 +42,7 @@ if(isset($_GET['mess'])){
 		</div>
 
 
-		<input type="submit" value="Ajouter" class="button">
+		<input type="submit" value="Se connecter" class="button">
 		<a href="?route=createAccount" class="button">Créer un compte</a>
 	</div>
 

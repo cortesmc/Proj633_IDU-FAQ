@@ -47,14 +47,16 @@ class ConnexionController {
 
 				}
 
-				header("Location: ?route=utilisators");	
+				$_SESSION["utilisateur_conn"] = $result= Utilisator::allWithParam("email",$email);
+				$_SESSION["isTeacher"] = Teacher::checkIfEmailExist($email);
+
+				header("Location: ?route=questions");	
 			}
 			else{
-				include_once "view/utilisator/addFormUtilisator.php";
+				//Si l'email existe déjà
+				include_once "view/utilisator/addFormUtilisatorError.php";
 			}
 		} else {
-			//Si l'email existe déjà
-			// TO DO message de modifications
 			include_once "view/utilisator/addFormUtilisator.php";
 		}
 	}
@@ -76,7 +78,6 @@ class ConnexionController {
 			}
 			if(count($result)!=0){
 				$connectedUser = $result[0];
-				// var_dump($connectedUser);
 
 				// l'email est présent dans la base de donnée
 				//Vérification si le mot de passe est bien le même
@@ -85,7 +86,7 @@ class ConnexionController {
 					// -> Si oui envoyé à la route home
 					$_SESSION["utilisateur_conn"] =  $connectedUser;
 					$_SESSION["isTeacher"] = $isTeacher;
-					header("Location: ?route=home");			
+					header("Location: ?route=questions");			
 
 				}
 				else{

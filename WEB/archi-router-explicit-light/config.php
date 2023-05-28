@@ -24,6 +24,7 @@ catch (Exception $e)
 function db() { global $db; return $db; }
 
 
+session_start();
 
 
 

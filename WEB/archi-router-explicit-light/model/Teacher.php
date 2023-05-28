@@ -3,11 +3,6 @@
 class Teacher extends Model {
 
     public function save() {
-		// Données connues :
-		// $this->idbeer
-		// $this->name
-		// $this->color
-
 		$class = get_called_class(); 
 		$table = strtolower($class); 
 
@@ -52,7 +47,10 @@ class Teacher extends Model {
 	}
 
 	public static function checkIfEmailExist($email) {
-		return (Utilisator::getByEmail($email) != false) ? true : false;
+		/*
+		Si l'email est présent dans la table Teacher -> return true : else -> return false
+		*/ 
+		return (Teacher::getByEmail($email) != false) ? true : false;
 	}
 	
 
