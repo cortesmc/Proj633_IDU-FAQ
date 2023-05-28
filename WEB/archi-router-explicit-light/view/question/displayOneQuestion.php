@@ -71,28 +71,33 @@
                         </div>
                     </div>
                 </div>
+
+                <?php
+                if ($_SESSION['isTeacher']) {
+                ?>
                 
-                <div class='qst_button'>
+                    <div class='qst_button'>
 
-                    <div class='btn_edit'>
-                        <form action='' method='POST'>
-                            <input type='submit' value='EDIT' name='edit_qst'></input>
-                        </form>
+                        <div class='btn_edit'>
+                            <form action='' method='POST'>
+                                <input type='submit' value='EDIT' name='edit_qst'></input>
+                            </form>
+                        </div>
+
+                        <?php if (!$data->isValidate) { ?>
+                        <div class='btn_valider'>
+                            <form action="" method="POST">
+                                <input type='submit' value='VALIDER' name="validateQuestionFormSend"></input>
+                            </form>
+                        </div>
+
+                        <?php 
+                        } 
+                        ?>
+
                     </div>
-
-                    <?php if (!$data->isValidate) { ?>
-                    <div class='btn_valider'>
-                        <form action="" method="POST">
-                            <input type='submit' value='VALIDER' name="validateQuestionFormSend"></input>
-                        </form>
-                    </div>
-
-                    <?php 
-                    } 
-                    ?>
-
-                </div>
             <?php
+                }
             }
             ?>
 
@@ -104,6 +109,8 @@
             </div>
 
             <?php
+
+            if ($_SESSION['isTeacher']) {
                 if (isset($_POST["write_answer"])){
                     echo"
                     <form action='' method='POST' class='form_write_answer' enctype='multipart/form-data'>
@@ -131,13 +138,15 @@
                     </form>
                     ";
                 }
-                else{
+                else {
                     echo"
                     <div class='btn_write'>
                         <form action='' method='POST'><input type='submit' value='Write answer' name='write_answer'></input></form>
                     </div>
                     ";
                 }
+            }
+                
             ?>
 
             
@@ -146,7 +155,6 @@
             <?php
             
             foreach($data->answers as $answer) {
-                
             
                 if (isset($_POST["edit"])){
                 ?>
@@ -169,9 +177,12 @@
         
                         
                     <div class='qst_button'>
+
+                       
                         <div class='btn_edit'>
-                            <form action='template_page_question.php' method='POST'><input type='submit' value='CANCEL' name='back_qst'></input></form>
+                            <form action='' method='POST'><input type='submit' value='CANCEL' name='back_qst'></input></form>
                         </div>
+
                         <div class='btn_valider'>
                             <input type='submit' value='VALIDER MODIFICATIONS'></input>
                         </div>
@@ -189,9 +200,17 @@
                                     <h4>Sujet :</h4>
                                     <p> <?php echo $data->title ?> </p>
                                 </div>
+
+                            <?php 
+                            if (isset($teacherConnected) && $teacherConnected->idteacher == $answer->idteacher) {
+                            ?>
                                 <div class='btn_etit_response'>
-                                    <form action='template_page_question.php' method='POST'><input type='submit' value='EDIT' name='edit'></input></form>
+                                    <form action='' method='POST'><input type='submit' value='EDIT' name='edit'></input></form>
                                 </div>
+                            <?php
+                            }
+                            ?>
+
                             </div>
                             <div class='texte_answer'>
                                 <p> <?php echo $answer->shortText ?> </p>
