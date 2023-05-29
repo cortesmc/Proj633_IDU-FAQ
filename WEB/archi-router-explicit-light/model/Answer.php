@@ -36,7 +36,7 @@ class Answer extends Model {
         return $row['nbTtotal'];
     }
 
-    public function getLastId() {
+    public static function getLastId() {
         $class = get_called_class();
         $table =  strtolower($class);
         $st = db()->prepare("SELECT max(idanswer) as maxiD

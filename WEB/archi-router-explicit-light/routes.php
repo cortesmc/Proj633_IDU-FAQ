@@ -15,6 +15,8 @@ $app->route("utilisators", "UtilisatorController", "displayAllUtilisator");
 // -- Question 
 $app->route("questions", "QuestionController", "displayAllQuestion");
 $app->route("question", "QuestionController", "displayOneQuestion");
+$app->route("question", "QuestionController", "likeOrUnlikeQuestion");
+
 
 $app->route("home", "SiteController", "index");
 

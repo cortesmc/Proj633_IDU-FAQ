@@ -219,9 +219,12 @@ class QuestionController {
             
         }
 
+
+
         // -- DATA
         global $data;
         $data = Question::getByID($_GET['idQuestion']);
+        QuestionController::likeOrUnlikeQuestion();
 
         // var_dump(Answer::getNbTotal());
         
@@ -234,5 +237,23 @@ class QuestionController {
         // echo "pppappapap";
 
     }
+
+    public static function likeOrUnlikeQuestion(){
+        //Cas ou le bouton est déjà rouge, donc déjà like on veut unlike quand c'est cliqué
+        $idQuestion = $_GET['idQuestion'];
+        $idUser = $_SESSION["utilisateur_conn"]->idutilisator;  
+        if(isset($_POST['like'])){
+            Utilisator::removeLiked($idUser,$idQuestion);
+
+        }
+        //L'autre cas
+        if(isset($_POST['unlike'])){
+            Utilisator::addLiked($idUser,$idQuestion);
+
+        }
+    }
+
+
+
 
 }

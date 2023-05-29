@@ -271,3 +271,38 @@ p {
     color: #C1C8E4;
     color: #8860D0;
 }
+
+#unlike{
+    background: none;
+    border: none;
+    color: rgb(196, 196, 196);
+    cursor: pointer;
+    padding: 0;
+    font-size: 2em;
+    margin: 0;
+    margin-right: 0.3em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: none;
+}
+
+#like{
+    background: none;
+    border: none;
+    color: #e94848;
+    cursor: pointer;
+    padding: 0;
+    font-size: 2em;
+    margin: 0;
+    margin-right: 0.3em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: none;
+
+}
+
+#like:hover{
+    color:rgb(196, 196, 196);
+}
+
+#unlike:hover{
+    color:#e94848;
+}

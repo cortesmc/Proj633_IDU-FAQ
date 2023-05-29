@@ -74,6 +74,24 @@ class Utilisator extends Model {
         return $list;	
 		
 	}
+
+	public static function addLiked($idUtilisator,$idQuestion){
+		$st = db()->prepare("insert into isLiked
+		(idutilisator,idquestion)
+		values(:idutilisator,:idquestion)");
+		$st->bindValue(':idutilisator',$idUtilisator);
+		$st->bindValue(':idquestion',$idQuestion);
+		$st->execute();
+	}
+
+	public static function removeLiked($idUtilisator,$idQuestion){
+		$st = db()->prepare("delete from isLiked
+		where (idutilisator = :idutilisator AND
+		idquestion =:idquestion)");
+		$st->bindValue(':idutilisator',$idUtilisator);
+		$st->bindValue(':idquestion',$idQuestion);
+		$st->execute();
+	}
 	
 
 }

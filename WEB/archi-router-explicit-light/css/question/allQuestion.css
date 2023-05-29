@@ -10,7 +10,7 @@ body{
     background-color: #e9eeff;
 }
 
-header{
+/* header{
     background-image: linear-gradient(to right, #84ceeb 0%, #59b9ea 51%, #84ceeb 100%);
     color: white;
     padding: 25px;
@@ -18,7 +18,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 .compte{
     margin-left: auto;

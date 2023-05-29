@@ -13,13 +13,19 @@ body {
 }
 
 header{
-    background-color: linear-gradient(to right, #84ceeb 0%, #59b9ea 51%, #84ceeb 100%);
+    /* background-color: linear-gradient(to right, #84ceeb 0%, #59b9ea 51%, #84ceeb 100%)!important; */
+	background-color: #59b9ea;
     color: white;
     padding: 25px;
     box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+header .header_back{
+	
+
 }
 
 .compte{

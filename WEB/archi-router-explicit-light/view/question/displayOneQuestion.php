@@ -60,10 +60,24 @@
                                 <h4>Sujet</h4>
                                 <p> <?php echo $data->title ?> </p>
                             </div>
-
+                            <form action='' method='POST'>
+                            <?php
+                                if(in_array($data->idquestion,$_SESSION["utilisateur_conn"]->getLiked())){
+                            ?>
                             <div class='btn_like'>
-                                <input type='submit' value='❤'></input>
+                                <input type='submit' value='❤' id='like' name="like"></input>
                             </div>
+                            <?php
+                                }
+                                else{
+                            ?>
+                            <div class='btn_like'>
+                                <input type='submit' value='❤' id='unlike'name="unlike"></input>
+                            </div>
+                            <?php
+                                }
+                            ?>
+                            </form>
                         </div>
 
                         <div class='texte_qst'>
