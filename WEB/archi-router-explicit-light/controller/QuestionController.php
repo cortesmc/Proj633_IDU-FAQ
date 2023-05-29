@@ -100,8 +100,9 @@ class QuestionController {
         // -- WRITE ANSWER
         if (isset($_POST['validateAnswerFormSend'])) {
 
-            var_dump($_POST);
-            var_dump($_FILES);
+            // var_dump($_FILES);
+            // var_dump($_POST);
+            
             if( !is_null($_POST['shortTextAnswer'])){
                 $answer = Answer::create();
 
@@ -153,6 +154,61 @@ class QuestionController {
                         
                         // On upload notre fichier dans le dossier data/question_[ID_QUESTION]
                         move_uploaded_file($fichierTemporaire, $pathDirectory . '/' . $nameFile); // il faut mettre son user pour savoir dans quelle public_html il faut mettre le fichier
+                        
+                    } 
+                    // else {
+                    //     echo 'Une erreur s\'est produite lors du téléchargement du fichier.';
+                    // }
+                }
+            }
+            
+        }
+
+        // -- EDIT ANSWER
+        if (isset($_POST['editAnswerFormSend'])) {
+
+            if( !is_null($_POST['editAnswershortText'])){
+                $answer = Answer::getByID( $_POST['editAnswerIdAnswer'] );
+
+                $answer->shortText = $_POST['editAnswershortText'];
+
+
+                if ($_FILES['editFileAnswer']['name'] != '')
+                    $answer->nameFile = 'answer_'. $_POST['editAnswerIdAnswer'] .'_prof' . $_SESSION['utilisateur_conn']->idutilisator . '.txt';
+                else 
+                    $answer->nameFile = $answer->nameFile;
+                
+                $answer->save();
+
+
+                // -- UPLOAD
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    // Vérifier si le fichier a été correctement téléchargé sans erreur
+                    if (isset($_FILES['editFileAnswer']) && $_FILES['editFileAnswer']['error'] === UPLOAD_ERR_OK) {
+                        
+
+                        // -- NOM DU FICHIER :
+                        $nameFile = 'answer_'. $_POST['editAnswerIdAnswer'] .'_prof' . $_SESSION['utilisateur_conn']->idutilisator . '.txt';
+                        $fichierTemporaire = $_FILES['editFileAnswer']['tmp_name'];
+                        
+
+
+                        // -- CREATION DOSSIER POUR UPLOAD
+                        // Get dossier parent
+                        $parentDirectory = basename(dirname(__DIR__)) ;
+
+                        $dataDirectory = 'data';
+                        $fullPath = implode(DIRECTORY_SEPARATOR, [$parentDirectory, $dataDirectory]);
+
+                        $nameDirectory = "question_" . Question::getByID($_GET['idQuestion'])->idquestion;
+
+                        // Chemin du dossier de la question
+                        $pathDirectory = '../' . $fullPath . '/' . $nameDirectory;
+
+                         
+                        
+                        // On upload notre fichier dans le dossier data/question_[ID_QUESTION]
+                        move_uploaded_file($fichierTemporaire, $pathDirectory . '/' . $nameFile); 
                         
                     } 
                     // else {
