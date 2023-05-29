@@ -64,6 +64,8 @@ p {
 .titre_sujet h4{
     padding-right: 0.3em;
     padding-left: 0.3em;
+    border-right: 2px solid black;
+    margin-right: 0.5em;
 }
 
 .label_answer h4{
@@ -209,6 +211,10 @@ p {
     .qst_button, .titre_sujet{
         display: inline-block;
     }
+
+    .titre_sujet h4{
+        border: none;
+    }
 }
 
 @media (min-width: 600px) and (max-width: 950px) {
@@ -242,6 +248,10 @@ p {
 
     .qst_button, .titre_sujet{
         display: inline-block;
+    }
+
+    .titre_sujet h4{
+        border: none;
     }
 
     .qst_button, .btn_for_answer {
