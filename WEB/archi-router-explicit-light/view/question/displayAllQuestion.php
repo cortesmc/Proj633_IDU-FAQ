@@ -11,7 +11,7 @@
         <?php
         if (!$_SESSION['isTeacher']) {
         ?>
-        <div id='ask_container' class='container leftContainer'>
+        <div id='ask_container' class='leftContainer'>
             <?php
             if (isset($_POST["ask_question"])){
             ?>
@@ -64,7 +64,7 @@
         <?php
         if ($_SESSION['isTeacher']) {
         ?>
-            <div id='unvalidated_container' class='container leftContainer'>
+            <div id='unvalidated_container' class='leftContainer'>
 
             <?php
             if (count($questionsNotValidate) == 0) {
@@ -106,7 +106,7 @@
                 <div id='searchBarDiv'>
                     <form action='' method='post'>
                         <input type='text' id='searchBar' name='searchBar'>
-                        <input type="submit" value="Valider" class="btn" name="searchSend" id="searchSend">
+                        <input type="submit" value="🔍" name="searchSend" id="searchSend">                        
                     </form>
                 </div>
                 <div id='filter'>
@@ -117,35 +117,35 @@
                 </div>
             </div>
             
-                    <div id=filterDiv>
-                        <form action='' method='post'>
-                            <div id='allCategories' class='display_none'>
-                            <!-- // liste des categories sous forme de checkbox
-                            // remplacer categorie1,2,3 par le nom de la categorie 
-                            // attention bien le faire partout : id de la checkbox, for du label, texte du label -->
+            <div id=filterDiv>
+                <form action='' method='post'>
+                    <div id='allCategories' class='display_none'>
+                    <!-- // liste des categories sous forme de checkbox
+                    // remplacer categorie1,2,3 par le nom de la categorie 
+                    // attention bien le faire partout : id de la checkbox, for du label, texte du label -->
 
-                            <?php
-                            foreach($categories as $categoryFilter) {
-                            ?>
-                                <div class='checkboxdiv'>
-                                    <input type='radio' class='categorie_checkbox' 
-                                            id='<?php echo $categoryFilter->libele ?>' 
-                                            value='<?php echo $categoryFilter->libele ?>' 
-                                            name='categoryFilter'
-                                            <?php if(isset($_POST['categoryFilter']) && $_POST['categoryFilter'] == $categoryFilter->libele){echo 'checked';} ?>
-                                            >
-                                    <label for='<?php echo $categoryFilter->libele ?>' ><?php echo $categoryFilter->libele ?></label>
-                                </div>
+                    <?php
+                    foreach($categories as $categoryFilter) {
+                    ?>
+                        <div class='checkboxdiv'>
+                            <input type='radio' class='categorie_checkbox' 
+                                    id='<?php echo $categoryFilter->libele ?>' 
+                                    value='<?php echo $categoryFilter->libele ?>' 
+                                    name='categoryFilter'
+                                    <?php if(isset($_POST['categoryFilter']) && $_POST['categoryFilter'] == $categoryFilter->libele){echo 'checked';} ?>
+                                    >
+                            <label for='<?php echo $categoryFilter->libele ?>' ><?php echo $categoryFilter->libele ?></label>
+                        </div>
 
-                            <?php
-                            }
-                            ?>
+                    <?php
+                    }
+                    ?>
 
-                                <input type="submit" value="Valider" class="btn" name="filterCategoriesQuestionsFormSend" id="filterCategoriesQuestionsFormSend">
-                            </div>
-
-                        </form>
+                        <input type="submit" value="Valider" class="btn" name="filterCategoriesQuestionsFormSend" id="filterCategoriesQuestionsFormSend">
                     </div>
+
+                </form>
+            </div>
 
             <!-- div avec toutes les questions : modifier php -->
             <div id='allQuestions'>
