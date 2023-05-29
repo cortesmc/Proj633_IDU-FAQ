@@ -54,6 +54,26 @@ class Utilisator extends Model {
 		*/ 
 		return (Utilisator::getByEmail($email) != false) ? true : false;
 	}
+
+
+	// return all ids liked by the user.
+	public function getLiked() {
+		$class = get_called_class();
+		$table =  strtolower($class);
+
+		$st = db()->prepare("select idquestion 
+			from isLiked
+			where idutilisator = :idutilisator");
+		$st->bindValue(':idutilisator',$this->idutilisator);
+		$st->execute();
+		$list = array();
+		while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            foreach($row as $field=>$value)
+				$list[]=$value;          
+        }
+        return $list;	
+		
+	}
 	
 
 }
