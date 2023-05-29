@@ -52,6 +52,11 @@ h1{
     margin-right: 4em;
 }
 
+#QBtns{
+    display: flex;
+    justify-content: space-evenly;
+}
+
 #questionEntry{
     padding: 0.8em;
     padding-top: 0.2em;
@@ -78,6 +83,14 @@ span{
     border-radius: 10px;
     border: 1px solid;
     width: calc(100% - 80px);
+}
+
+#categorySelected{
+    padding: 0.3em;
+    border-radius: 10px;
+    border: 1px solid;
+    font-size: 1em;
+    margin: 5px auto;
 }
 
 #TextAreaQuestion{
@@ -120,6 +133,10 @@ span{
     font-weight: bold;
 }
 
+.unvalidatedTitle:hover{
+    color: #31a4de;
+}
+
 #questions_container{
     width: 60%;
     margin-left: 1.5em;
@@ -132,11 +149,16 @@ span{
 }
 
 #searchBarDiv{
-    width: calc(100% - 300px);
+    width: 100%;
+    display: flex;
+}
+
+#searchBarDiv span{
+    margin: 30px 5px;
 }
 
 #searchBarDiv form{
-    width: 100%;
+    width: calc(100% - 130px);
     display: flex;
 }
 
@@ -150,7 +172,7 @@ span{
     font-size: 1.4em;
     background-color: #e9eeff;
     border: none;
-    margin : 0em 0.4em;
+    margin: 0em 0.4em;
 }
 
 .btn{
@@ -170,6 +192,7 @@ span{
 
 #filterBtn{
     margin-right: 0px;
+    margin-left: 0px;
 }
 
 #filterDiv{
@@ -177,6 +200,26 @@ span{
     border: 2px solid #59b9ea;
     border-radius: 20px;
     background-color: white;
+}
+
+#filterDiv form{
+    margin: 0px;
+}
+
+#allCategories{
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkboxdiv{
+    padding: 0.5em;
+    display: flex;
+    flex-basis: 32%;
+}
+
+.checkboxdiv label{
+    padding-left: 0.1em;
 }
 
 #filter_buttons{
@@ -234,4 +277,55 @@ span{
     background-position: right center; /* change the direction of the change here */
     color: #e94848;
     text-decoration: none;
+}
+
+@media (min-width: 950px) and (max-width: 1100px){
+    #searchDiv{
+        display: inline;
+    }
+
+    #QBtns{
+        display: inline;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 950px) {
+    #content{
+        display: inline-block;
+        width: 100%;
+    }
+
+
+    .leftContainer, #questions_container{
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 5em;
+    }
+}
+
+@media (max-width: 700px) {
+    #content{
+        display: inline-block;
+        width: 100%;
+    }
+
+
+    .leftContainer, #questions_container{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 5em;
+    }
+
+    #searchDiv{
+        display: inline;
+    }
+
+}
+
+@media (max-width: 500px) {
+    #filter_buttons{
+        display: inline;
+    }
 }

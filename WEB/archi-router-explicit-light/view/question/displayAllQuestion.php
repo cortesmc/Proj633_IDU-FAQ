@@ -16,6 +16,11 @@
             if (isset($_POST["ask_question"])){
             ?>
             <form action='' method='post'>
+
+                <div id='QBtns'>
+                    <input type='submit' class='btn' id='backBtn' value='Annuler'>
+                    <input type='submit' class='btn' id='sendBtn' name="addQuestionFormSend" value='Envoyer'>
+                </div>
                 
                 <div id='questionEntry'>
                     <div id='writeHeader'>
@@ -37,11 +42,6 @@
                     </select>
 
                     <textarea id='TextAreaQuestion' cols='30' rows='10' name="addQuestionDescr"></textarea>
-                </div>
-
-                <div id='QBtns'>
-                    <input type='submit' class='btn' id='backBtn' value='Annuler'>
-                    <input type='submit' class='btn' id='sendBtn' name="addQuestionFormSend" value='Envoyer'>
                 </div>
             </form>
             <?php
@@ -102,21 +102,24 @@
 
         <div id='questions_container' class='container'>
             <div id=searchDiv>
-                <span>Recherche : </span>
                 <div id='searchBarDiv'>
+                    <span>Recherche : </span>
                     <form action='' method='post'>
                         <input type='text' id='searchBar' name='searchBar'>
                         <input type="submit" value="🔍" name="searchSend" id="searchSend">                        
                     </form>
                 </div>
                 <div id='filter'>
-                    <!-- <form action='' method='post'>
+                    <form action='' method='post'>
                         <input type='submit' class='btn' name='filterBtn' id='filterBtn' value='Filtres'>
-                    </form> -->
-                    <p class="btn" id='filterBtn'>Filtres</p>
+                    </form>
+                    <!-- <p class="btn" id='filterBtn'>Filtres</p> -->
                 </div>
             </div>
             
+            <?php
+            if(isset($_POST['filterBtn'])){
+            ?>
             <div id=filterDiv>
                 <form action='' method='post'>
                     <div id='allCategories' class='display_none'>
@@ -140,12 +143,17 @@
                     <?php
                     }
                     ?>
-
+                    </div>
+                    <div id="filter_buttons">
+                        <input type="submit" value="Annuler" class="btn" name="filterCategoriesQuestionsFormBack" id="filterCategoriesQuestionsFormBack">
                         <input type="submit" value="Valider" class="btn" name="filterCategoriesQuestionsFormSend" id="filterCategoriesQuestionsFormSend">
                     </div>
-
                 </form>
             </div>
+            <?php
+            }
+            ?>
+            
 
             <!-- div avec toutes les questions : modifier php -->
             <div id='allQuestions'>
@@ -154,10 +162,10 @@
 
             <?php
             if (empty($questionsValidate) && isset($_POST['categoryFilter'])) {
-                echo "<h2>Aucune quesiton n'est liée a la catégorie ". $_POST['categoryFilter']." pour le moment</h2>";
+                echo "<h2>Aucune question n'est liée a la catégorie ". $_POST['categoryFilter']." pour le moment</h2>";
             }
             else if (empty($questionsValidate)) {
-                echo "<h2>Aucune quesiton n'est validée pour le moment</h2>";
+                echo "<h2>Aucune question n'est validée pour le moment</h2>";
             }
             else {
                 foreach($questionsValidate as $questionValidate) {
