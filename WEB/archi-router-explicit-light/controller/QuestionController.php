@@ -87,27 +87,71 @@ class QuestionController {
         }
 
 
+
+
+        
+        if ($_SESSION['isTeacher']) 
+            $teacherConnected = Teacher::getByEmail( $_SESSION['utilisateur_conn']->email );
+
+
+
         // -- WRITE ANSWER
         if (isset($_POST['validateAnswerFormSend'])) {
+
+            var_dump($_POST);
+            var_dump($_FILES);
             if( !is_null($_POST['shortTextAnswer'])){
                 $answer = Answer::create();
 
                 $answer->shortText = $_POST['shortTextAnswer'];
-                $answer->nameFile = $_FILES['FileAnswer']['name'];
+                if ($_FILES['FileAnswer']['name'] != '')
+                    $answer->nameFile = 'answer_'. $_POST['writeAnswerIdAnswer'] .'_prof' . $_SESSION['utilisateur_conn']->idutilisator . '.txt';
+                else 
+                    $answer->nameFile = NULL;
                 $answer->idteacher = Teacher::getByEmail($_SESSION['utilisateur_conn']->email)->idteacher;
                 $answer->idquestion = $_GET['idQuestion'];
                 $answer->save();
 
+
+                // -- UPLOAD
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Vérifier si le fichier a été correctement téléchargé sans erreur
                     if (isset($_FILES['FileAnswer']) && $_FILES['FileAnswer']['error'] === UPLOAD_ERR_OK) {
-                        $nomFichier = $_FILES['FileAnswer']['name'];
+                        
+                        var_dump($_POST['writeAnswerIdAnswer']);
+
+                        // -- NOM DU FICHIER :
+                        $nameFile = 'answer_'. $_POST['writeAnswerIdAnswer'] .'_prof' . $_SESSION['utilisateur_conn']->idutilisator . '.txt';
                         $fichierTemporaire = $_FILES['FileAnswer']['tmp_name'];
                         
-                        // Déplacer le fichier temporaire vers un emplacement permanent
-                        move_uploaded_file($fichierTemporaire, '/home/femathie/public_html/upload_tmp/' . $nomFichier); // il faut mettre son user pour savoir dans quelle public_html il faut mettre le fichier
+
+
+                        // -- CREATION DOSSIER POUR UPLOAD
+                        // Get dossier parent
+                        $parentDirectory = basename(dirname(__DIR__)) ;
+
+                        $dataDirectory = 'data';
+                        $fullPath = implode(DIRECTORY_SEPARATOR, [$parentDirectory, $dataDirectory]);
+
+                        $nameDirectory = "question_" . Question::getByID($_GET['idQuestion'])->idquestion;
+
+                        // Chemin du dossier à créer
+                        $pathDirectory = '../' . $fullPath . '/' . $nameDirectory;
+
+                            // Si le dossier n'existe pas -> creattion du dossier
+                        if (!is_dir($pathDirectory)) {
+                            // Créer le dossier
+                            if (mkdir($pathDirectory, 0777)) {
+                                echo "Le dossier $pathDirectory a été créé avec succès.";
+                            } 
+                            // else {
+                            //     echo "Une erreur s'est produite lors de la création du dossier $nomDossier.";
+                            // }
+                        } 
                         
-                        // echo 'Le fichier a été téléchargé avec succès.';
+                        // On upload notre fichier dans le dossier data/question_[ID_QUESTION]
+                        move_uploaded_file($fichierTemporaire, $pathDirectory . '/' . $nameFile); // il faut mettre son user pour savoir dans quelle public_html il faut mettre le fichier
+                        
                     } 
                     // else {
                     //     echo 'Une erreur s\'est produite lors du téléchargement du fichier.';
@@ -121,18 +165,15 @@ class QuestionController {
         global $data;
         $data = Question::getByID($_GET['idQuestion']);
 
+        // var_dump(Answer::getNbTotal());
+        
+
         // -- VIEWS
         include_once "view/parts/header.php";
 		include_once "view/question/displayOneQuestion.php";
 		include_once "view/parts/footer.php";
 
         // echo "pppappapap";
-
-        
-
-
-
-
 
     }
 
