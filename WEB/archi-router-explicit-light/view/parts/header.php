@@ -18,7 +18,7 @@
 
     </header>
 	
-	<nav>
+	<!-- <nav>
 		<ul>
 			<li><a href='?route=home'>Accueil</a></li>
 			<li><a href='?route=utilisators'>Liste de Utilisateurs</a></li>
@@ -27,5 +27,5 @@
 			<li><a href='?route=question&idQuestion=1'>Une Question</a></li>
 
 		</ul>
-	</nav>
+	</nav> -->
 	<section>

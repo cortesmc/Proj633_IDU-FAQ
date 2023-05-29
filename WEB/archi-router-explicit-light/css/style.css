@@ -13,7 +13,7 @@ body {
 }
 
 header{
-    background-image: linear-gradient(to right, #84ceeb 0%, #59b9ea 51%, #84ceeb 100%);
+    background-color: linear-gradient(to right, #84ceeb 0%, #59b9ea 51%, #84ceeb 100%);
     color: white;
     padding: 25px;
     box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.15);
@@ -80,8 +80,9 @@ label  {
 footer {
 	flex: 0 0 40px;
 	line-height: 40px;
-	background-color: black;
+    background-color: #59b9ea;
 	color: white;
+	font-weight: bold;
 	text-align: center;
 	font-size: 0.8em;
 }

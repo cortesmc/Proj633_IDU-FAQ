@@ -115,7 +115,7 @@
 
                     
             ?>
-                    <form action='' method='POST' class='form_write_answer' enctype='multipart/form-data'>
+                <form action='' method='POST' class='form_write_answer' enctype='multipart/form-data'>
                     <input type="hidden" id="writeAnswerIdAnswer" name="writeAnswerIdAnswer" value="<?php echo Answer::getLastId() + 1?>">
 
                     <div class='btn_for_answer'>
@@ -139,7 +139,7 @@
                             <input type='file' name='FileAnswer' class='longtext' placehorder='Mettez fotre fichier ici'></input>
                         </div>
                     </div>
-                    </form>
+                </form>
                 
                 <?php
                 }
@@ -162,37 +162,42 @@
             
             foreach($data->answers as $answer) {
                             
-                if (isset($_POST["edit"])){
+                if (isset($_POST['edit_answer_' . $answer->idanswer])){
                 ?>
                        
-                    <form action='template_page_question.php' method='POST'>
+                    <form action='' method='POST' enctype='multipart/form-data'>
+                        <input type="hidden" id="editAnswerIdAnswer" name="editAnswerIdAnswer" value="<?php echo $answer->idanswer ?>">
+
                         <div class='question_modif'>
                             <div class='haut_qst_modif'>
                                 <div class='titre_sujet'>
-                                    <h4>Sujet :</h4>
-                                    <input type='text' name='titre' value='Ceci est un titre' class='titre_modif'></input>
+                                    <h4>Sujet : <?php echo $data->title ?> </h4>
                                 </div>
                             </div>
     
                             <div class='texte_qst'>
-                                <textarea name='corps' class='corps'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magnam facere modi nobis repellat esse provident quas incidunt maxime necessitatibus sint molestiae magni beatae in suscipit officiis doloremque, harum perferendis!
-                                </textarea>
+                                <textarea name='editAnswershortText' class='corps'><?php echo $answer->shortText ?> </textarea>
+                            </div>
+
+                            <input type='file' name='editFileAnswer' class='longtext' placehorder='Mettez fotre fichier ici'></input>
+
+                        </div>
+
+                        <div class='qst_button'>
+
+                            <div class='btn_edit'>
+                                <form action='' method='POST'><input type='submit' value='CANCEL' name='back_qst'></input></form>
+                            </div>
+
+                            <div class='btn_valider'>
+                                <input type='submit' value='VALIDER MODIFICATIONS' name="editAnswerFormSend"></input>
                             </div>
                         </div>
+
                     </form>
         
                         
-                    <div class='qst_button'>
-
-                       
-                        <div class='btn_edit'>
-                            <form action='' method='POST'><input type='submit' value='CANCEL' name='back_qst'></input></form>
-                        </div>
-
-                        <div class='btn_valider'>
-                            <input type='submit' value='VALIDER MODIFICATIONS'></input>
-                        </div>
-                    </div>
+                    
                 <?php
                 }
                     
@@ -211,7 +216,7 @@
                             if (isset($teacherConnected) && $teacherConnected->idteacher == $answer->idteacher) {
                             ?>
                                 <div class='btn_etit_response'>
-                                    <form action='' method='POST'><input type='submit' value='EDIT' name='edit'></input></form>
+                                    <form action='' method='POST'><input type='submit' value='EDIT' name=<?php echo 'edit_answer_' . $answer->idanswer ?>  ></input></form>
                                 </div>
                             <?php
                             }
@@ -231,7 +236,7 @@
                             ?>
 
                             <div class='file_qst'>
-                                <form action='' method='POST'><input type='submit' value='VOIR LONG TEXT' name=<?php echo 'view_long_text_' . $answer->idanswer ?>  ></input></form>
+                                <form action='' method='POST'><input type='submit' value='VOIR LONG TEXT' name=<?php echo 'view_long_text_' . $answer->idanswer ?> ></input></form>
                             </div>
 
                             <?php
