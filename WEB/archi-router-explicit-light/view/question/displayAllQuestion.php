@@ -173,7 +173,19 @@
                     <div class=questionBG>
                         <div class='question'>
                             <a href='?route=question&idQuestion=<?php echo $questionValidate->idquestion ?>' class='questionTitle'><?php echo $questionValidate->title ?></a>
-                            <input type='submit' value='❤' class='like'></input>
+                            <?php
+                                if(in_array($questionValidate->idquestion,$_SESSION["utilisateur_conn"]->getLiked())){
+                            ?>
+                            <span style="color:#e94848"class='like'>❤</span>   
+                            <?php
+                            }
+                            else{
+                            ?>
+                            <span style="color: rgb(196,196,196)"class='like'>❤</span>   
+                            <?php
+                            }
+                            ?>
+                            <!-- <input type='submit' value='❤' class='like'></input> -->
                         </div>
                     </div>
 

@@ -4,6 +4,8 @@ $data = null;
 
 class QuestionController {
 
+
+
     public function displayAllQuestion() {
         // -- TRAITEMENT FORMULAIRES
 

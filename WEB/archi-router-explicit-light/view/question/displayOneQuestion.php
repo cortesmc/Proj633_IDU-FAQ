@@ -57,7 +57,7 @@
                         <div class='haut_qst'>
 
                             <div class='titre_sujet'>
-                                <h4>Sujet :</h4>
+                                <h4>Sujet</h4>
                                 <p> <?php echo $data->title ?> </p>
                             </div>
 
@@ -169,7 +169,7 @@
                         <div class='question_modif'>
                             <div class='haut_qst_modif'>
                                 <div class='titre_sujet'>
-                                    <h4>Sujet :</h4>
+                                    <h4>Sujet</h4>
                                     <input type='text' name='titre' value='Ceci est un titre' class='titre_modif'></input>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@
                         <div class='response'>
                             <div class='haut_qst'>
                                 <div class='titre_sujet'>
-                                    <h4>Sujet :</h4>
+                                    <h4>Sujet</h4>
                                     <p> <?php echo $data->title ?> </p>
                                 </div>
 
