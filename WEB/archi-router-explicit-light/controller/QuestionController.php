@@ -68,6 +68,14 @@ class QuestionController {
     public function displayOneQuestion() {
         // -- TRAITEMENT FORMULAIRES
 
+
+        //-- BACK BUTTON
+
+
+        if(isset($_POST["back_btn"])){
+            echo '<meta http-equiv="refresh" content="0;url=?route=questions">';
+        }
+
         // -- EDIT QUESTION 
         if (isset($_POST['updateQuestionFormSend'])) {
             // $question = Question::getByID($_GET["idQuestion"]);

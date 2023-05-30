@@ -6,6 +6,10 @@
 
 
 <div class='principal'>
+    
+        <div class='back_btn'>
+            <form action="" method="post"><input type="submit" value="Back" name="back_btn"></form>
+        </div>
         <div class='container_question'>
 
             <?php

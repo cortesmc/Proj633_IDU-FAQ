@@ -1,0 +1,3 @@
+<a href="http://lival.fr/apprentissage/bdtw/S4/co/aa_CSS_FI3.html" target="_blank">Cliquez ici !</a>
+
+<img src="https://i.pinimg.com/originals/51/af/bb/51afbb220540ba0e891194cff256fd23.jpg" style="width: 100px;">
