@@ -46,8 +46,8 @@ class ConnexionController {
 					$teacher->save();
 
 				}
-
-				$_SESSION["utilisateur_conn"] = $result= Utilisator::allWithParam("email",$email);
+				$result = Utilisator::allWithParam("email",$email);
+				$_SESSION["utilisateur_conn"] = $result[0];
 				$_SESSION["isTeacher"] = Teacher::checkIfEmailExist($email);
 
 				header("Location: ?route=questions");	

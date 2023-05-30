@@ -7,6 +7,7 @@ class QuestionController {
 
 
     public function displayAllQuestion() {
+
         // -- TRAITEMENT FORMULAIRES
 
         //    -- CATEGORIES FILTER
@@ -46,7 +47,7 @@ class QuestionController {
                 $question->title = $_POST['addQuestionTitle'];
                 $question->descr = $_POST['addQuestionDescr'];
                 $question->idcategory = $_POST['categorySelected'];
-                $question->idutilisator = $_SESSION['utilisateur_conn']->idutilisator;       
+                $question->idutilisator = $_SESSION['utilisateur_conn']->idutilisator; 
                 $question->save();
 
             }
